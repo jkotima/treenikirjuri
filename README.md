@@ -9,20 +9,21 @@ Treenin aikana käyttäjällä on käytössään treenitila, jonka avulla valitu
 Settien (toistot, painot, onnistuminen) historiatietoja voidaan tarkastella.
 
 ## Toimintoja:
+
 * Kirjautuminen
-	* Kuntosaliohjelman luominen
-		* Kuntosaliohjelmaan lisätään treenit (esim. "Maanantai")
-			* Treeneihin lisätään liikkeet (esim. penkkipunnerrus. Valitaan listasta, tai luodaan uusi)
-				* Valitaan settien lkm (esim. 3)
-				* Valitaan toistot (esim. 8)
+- Kuntosaliohjelman luominen
+	* Kuntosaliohjelmaan lisätään treenit (esim. "Maanantai")
+		* Treeneihin lisätään liikkeet (esim. penkkipunnerrus. Valitaan listasta, tai luodaan uusi)
+			* Valitaan settien lkm (esim. 3)
+			* Valitaan toistot (esim. 8)
 
-	* Kuntosaliohjelman aktivointi
-		* Valitaan käyttäjän omista tai muiden käyttäjien tekemistä ohjelmista
+- Kuntosaliohjelman aktivointi
+	* Valitaan käyttäjän omista tai muiden käyttäjien tekemistä ohjelmista
 
-	* Treenitila
-		* Treenin valinta (näkymässä näkyvät liikkeet määräytyvät tämän mukaisesti)
-		* Liikkeissä käytettyjen painojen ja toistojen lkm kirjaaminen
-		* Liikkeiden kohdalla näkyy edellisen kerran toistot ja painot
+- Treenitila
+	* Treenin valinta (näkymässä näkyvät liikkeet määräytyvät tämän mukaisesti)
+	* Liikkeissä käytettyjen painojen ja toistojen lkm kirjaaminen
+	* Liikkeiden kohdalla näkyy edellisen kerran toistot ja painot
 
-	* Historia
-		* Käyttäjä voi tarkastella liikekohtaista edistymistään
+- Historia
+	* Käyttäjä voi tarkastella liikekohtaista edistymistään
