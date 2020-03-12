@@ -32,4 +32,4 @@ Settien (toistot, painot, onnistuminen) historiatietoja voidaan tarkastella.
 	* Käyttäjä voi tarkastella liikekohtaista edistymistään
 
 
-[Tietokantakaavio](../dbdiagram.png)
+[Tietokantakaavio](../master/dbdiagram.png)
