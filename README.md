@@ -27,3 +27,5 @@ Toimintoja:
 
 	* Historia
 		* Käyttäjä voi tarkastella liikekohtaista edistymistään
+
+[Tietokantakaavio](../dbdiagram.png)
