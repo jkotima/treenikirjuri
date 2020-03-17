@@ -20,9 +20,6 @@ Settien (toistot, painot, onnistuminen) historiatietoja voidaan tarkastella.
 - Kuntosaliohjelman aktivointi
 	* Valitaan käyttäjän omista tai muiden käyttäjien tekemistä ohjelmista
 
-	* Historia
-		* Käyttäjä voi tarkastella liikekohtaista edistymistään
-
 - Treenitila
 	* Treenin valinta (näkymässä näkyvät liikkeet määräytyvät tämän mukaisesti)
 	* Liikkeissä käytettyjen painojen ja toistojen lkm kirjaaminen
