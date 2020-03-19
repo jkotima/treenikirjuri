@@ -30,3 +30,4 @@ Settien (toistot, painot, onnistuminen) historiatietoja voidaan tarkastella.
 
 
 [Tietokantakaavio](../master/dbdiagram.png)
+[Sovellus Herokussa](https://treenikirjuri.herokuapp.com/)
