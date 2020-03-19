@@ -14,8 +14,6 @@ Settien (toistot, painot, onnistuminen) historiatietoja voidaan tarkastella.
 - Kuntosaliohjelman luominen
 	* Kuntosaliohjelmaan lisätään treenit (esim. "Maanantai")
 		* Treeneihin lisätään liikkeet (esim. penkkipunnerrus. Valitaan listasta, tai luodaan uusi)
-			* Valitaan settien lkm (esim. 3)
-			* Valitaan toistot (esim. 8)
 
 - Kuntosaliohjelman aktivointi
 	* Valitaan käyttäjän omista tai muiden käyttäjien tekemistä ohjelmista
@@ -31,4 +29,7 @@ Settien (toistot, painot, onnistuminen) historiatietoja voidaan tarkastella.
 
 [Tietokantakaavio](../master/dbdiagram.png)
 
+[Käyttötapaukset](../master/documentation/usecases.md)
+
 [Sovellus Herokussa](https://treenikirjuri.herokuapp.com/)
+
