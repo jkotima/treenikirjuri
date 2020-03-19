@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Liike</th>
+    </tr>
+    {% for exercise in exercises %}
+    <tr>
+      <td>{{ exercise.name }}</td>
+      
+      <td>
+        <form method="POST" action="{{ url_for('exercises_delete', exercise_id=exercise.id) }}">
+          <input type="submit" value="Poista!"/>
+        </form>
+       </td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
