@@ -26,6 +26,9 @@ Settien (toistot, painot, onnistuminen) historiatietoja voidaan tarkastella.
 - Historia
 	* Käyttäjä voi tarkastella liikekohtaista edistymistään
 
+## Testitunnukset kirjautumiseen:
+* käyttäjätunnus:hello
+* salasana:world
 
 [Tietokantakaavio](../master/dbdiagram.png)
 

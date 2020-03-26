@@ -15,7 +15,7 @@ class User(db.Model):
 
     exercises = db.relationship('Exercise', backref='Accounts', lazy=True)
 
-    def __init__(self, name, username, passwoTaskrd):
+    def __init__(self, name, username, password):
         self.name = name
         self.username = username
         self.password = password
