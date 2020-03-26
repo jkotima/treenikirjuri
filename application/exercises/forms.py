@@ -7,3 +7,10 @@ class ExerciseForm(FlaskForm):
     unit = RadioField('Toistoissa käytetty yksikkö', choices=[('kg','Kilogramma'),('min','Minuutti'),('sec', 'Sekunti')], default='kg')
     class Meta:
         csrf = False
+
+class ExerciseEditForm(FlaskForm):
+    name = StringField("Uusi nimi", [validators.Length(min=2)])
+    description = StringField("Uusi kuvaus")
+    unit = RadioField('Uusi toistoissa käytetty yksikkö', choices=[('kg','Kilogramma'),('min','Minuutti'),('sec', 'Sekunti')], default='kg')
+    class Meta:
+        csrf = False
