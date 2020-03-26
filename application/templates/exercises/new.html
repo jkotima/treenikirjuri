@@ -1,8 +1,55 @@
 {% extends "layout.html" %}
-  
+
 {% block body %}
 <form method="POST" action="{{ url_for('exercises_create') }}">
-  <input type="text" name="name"/>
-  <input type="submit" value="Lisää liike"/>
+  <table>
+    <tr>
+      <td>
+        {{ form.name.label }}
+      </td>
+      <td>
+        {{ form.name }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.name.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <tr>
+        <td>
+          {{ form.description.label }}
+        </td>
+        <td>
+          {{ form.description }}
+        </td>
+    </tr>
+    
+  </table>
+  {{ form.unit.label }}
+  <table>
+    <tr>
+      <tr>
+        <td>
+          
+        </td>
+        <td>
+          {% for subfield in form.unit %}
+          <tr>
+              <td>{{ subfield }}</td>
+              <td>{{ subfield.label }}</td>
+          </tr>
+          {% endfor %}
+        </td>
+        
+    </tr>
+  </table>
+<td colspan="2">
+  <input type="submit" value="Lisää uusi liike"/>
+</td>
+    </tr>
 </form>
 {% endblock %}
