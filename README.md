@@ -30,7 +30,7 @@ Settien (toistot, painot, onnistuminen) historiatietoja voidaan tarkastella.
 * käyttäjätunnus:hello
 * salasana:world
 
-[Tietokantakaavio](../master/dbdiagram.png)
+[Tietokantakaavio](../master/documentation/dbdiagram.png)
 
 [Käyttötapaukset](../master/documentation/usecases.md)
 
