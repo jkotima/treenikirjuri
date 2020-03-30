@@ -1,14 +1,10 @@
 from application import db
+from application.models import Base
 
-class Exercises(db.Model):
+class Exercises(Base):
 
     __tablename__ = "Exercises"
 
-    id = db.Column(db.Integer, primary_key = True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
-    onupdate=db.func.current_timestamp())
-    
     name = db.Column(db.String(144), nullable=False) 
     description = db.Column(db.String(144), nullable=False)
     unit = db.Column(db.String(20), nullable=False)
@@ -18,5 +14,3 @@ class Exercises(db.Model):
 
     def __init__(self, name):
         self.name = name
-
-
