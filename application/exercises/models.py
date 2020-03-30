@@ -1,6 +1,6 @@
 from application import db
 
-class Exercise(db.Model):
+class Exercises(db.Model):
 
     __tablename__ = "Exercises"
 

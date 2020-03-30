@@ -1,6 +1,6 @@
 from application import db
 
-class User(db.Model):
+class Users(db.Model):
 
     __tablename__ = "Accounts"
   
@@ -13,7 +13,7 @@ class User(db.Model):
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
 
-    exercises = db.relationship('Exercise', backref='Accounts', lazy=True)
+    exercises = db.relationship('Exercises', backref='Accounts', lazy=True)
 
     def __init__(self, name, username, password):
         self.name = name

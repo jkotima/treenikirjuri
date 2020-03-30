@@ -1,13 +1,13 @@
 from application import app, db
 from flask import render_template, request, url_for, redirect
 from flask_login import login_required, current_user
-from application.exercises.models import Exercise
+from application.exercises.models import Exercises
 from application.exercises.forms import ExerciseForm, ExerciseEditForm
 
 @app.route("/exercises", methods=["GET"])
 #@login_required
 def exercises_index():
-    return render_template("exercises/list.html", exercises = Exercise.query.all())
+    return render_template("exercises/list.html", exercises = Exercises.query.all())
 
 @app.route("/exercises/new/")
 #@login_required
@@ -32,7 +32,7 @@ def exercises_edit(exercise_id):
     #db.session.delete(e)
     #db.session.commit()
 
-    return render_template("exercises/edit.html", form = ExerciseEditForm(), exercise = Exercise.query.get(exercise_id))
+    return render_template("exercises/edit.html", form = ExerciseEditForm(), exercise = Exercises.query.get(exercise_id))
 
 @app.route("/exercises/edit/<exercise_id>/", methods=["POST"])
 #@login_required
@@ -59,7 +59,7 @@ def exercises_create():
     if not form.validate():
         return render_template("exercises/new.html", form = form)
 
-    e = Exercise(form.name.data)
+    e = Exercises(form.name.data)
     e.description = form.description.data
     e.unit = form.unit.data
     e.created_by = current_user.id
