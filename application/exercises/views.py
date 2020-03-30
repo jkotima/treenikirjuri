@@ -2,12 +2,19 @@ from application import app, db
 from flask import render_template, request, url_for, redirect
 from flask_login import login_required, current_user
 from application.exercises.models import Exercises
-from application.exercises.forms import ExerciseForm, ExerciseEditForm
+from application.exercises.forms import ExerciseForm, ExerciseEditForm, ExerciseFilterForm
 
 @app.route("/exercises", methods=["GET"])
-@login_required
+#@login_required
 def exercises_index():
-    return render_template("exercises/list.html", exercises = Exercises.query.all())
+    created_by = request.args.get('createdBy')
+
+    if (created_by == None):
+        e = Exercises.find_exercises_by_creators_name("")
+    else:
+        e = Exercises.find_exercises_by_creators_name(created_by)
+    
+    return render_template("exercises/list.html", exercises = e, form = ExerciseFilterForm())
 
 @app.route("/exercises/new/")
 @login_required
@@ -25,7 +32,7 @@ def exercises_delete(exercise_id):
     return redirect(url_for("exercises_index"))
 
 @app.route("/exercises/edit/<exercise_id>/", methods=["GET"])
-#@login_required
+@login_required
 def exercises_edit(exercise_id):   
     e = Exercises.query.get(exercise_id)
     
@@ -39,14 +46,12 @@ def exercises_update(exercise_id):
 
     if form.name.data != "":
         e.name = form.name.data
-    print("NAME" + form.name.data)
+
     if form.description.data != "":
         e.description = form.description.data
-    print("description" + form.description.data)
 
     if form.unit.data != "":
         e.unit = form.unit.data
-    print("unit" + form.unit.data)
 
     db.session().add(e)
     db.session().commit()

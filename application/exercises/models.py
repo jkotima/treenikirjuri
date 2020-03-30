@@ -19,5 +19,14 @@ class Exercises(Base):
         self.name = name
 
     def get_creators_name(self):
-        a = Users.query.get(self.created_by)
-        return a.name
+        c = Users.query.get(self.created_by)
+        return c.name
+
+    @staticmethod
+    def find_exercises_by_creators_name(created_by):
+        stmt = text("SELECT exercises.id, exercises.name, exercises.description, accounts.name AS creators_name FROM exercises"
+                    " LEFT JOIN accounts ON created_by = accounts.id"
+                    " WHERE accounts.name"
+                    " LIKE :name").params(name=created_by+"%")
+
+        return db.engine.execute(stmt)
