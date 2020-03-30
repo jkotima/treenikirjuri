@@ -25,14 +25,11 @@ def exercises_delete(exercise_id):
     return redirect(url_for("exercises_index"))
 
 @app.route("/exercises/edit/<exercise_id>/", methods=["GET"])
-@login_required
+#@login_required
 def exercises_edit(exercise_id):   
     e = Exercises.query.get(exercise_id)
-
-    #db.session.delete(e)
-    #db.session.commit()
-
-    return render_template("exercises/edit.html", form = ExerciseEditForm(), exercise = Exercises.query.get(exercise_id))
+    
+    return render_template("exercises/edit.html", form = ExerciseEditForm(), exercise = e)
 
 @app.route("/exercises/edit/<exercise_id>/", methods=["POST"])
 @login_required
@@ -40,10 +37,16 @@ def exercises_update(exercise_id):
     form = ExerciseForm(request.form)   
     e = Exercises.query.get(exercise_id)
 
-    e.name = form.name.data
-    e.description = form.description.data
-    e.unit = form.unit.data
-    e.created_by = current_user.id
+    if form.name.data != "":
+        e.name = form.name.data
+    print("NAME" + form.name.data)
+    if form.description.data != "":
+        e.description = form.description.data
+    print("description" + form.description.data)
+
+    if form.unit.data != "":
+        e.unit = form.unit.data
+    print("unit" + form.unit.data)
 
     db.session().add(e)
     db.session().commit()

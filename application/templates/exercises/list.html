@@ -12,13 +12,13 @@
       <td>{{ exercise.name }}</td>
       <td>{{ exercise.description }}</td>
       <td>
-        <form method="POST" action="{{ url_for('exercises_delete', exercise_id=exercise.id) }}">
-          <input type="submit" value="Poista!"/>
+        <form method="GET" action="{{ url_for('exercises_edit', exercise_id=exercise.id) }}">
+          <input type="submit" value="Muokkaa"/>
         </form>
        </td>
-       <td>
-        <form method="GET" action="{{ url_for('exercises_edit', exercise_id=exercise.id) }}">
-          <input type="submit" value="Muokkaa!"/>
+      <td>
+        <form method="POST" action="{{ url_for('exercises_delete', exercise_id=exercise.id) }}">
+          <input type="submit" value="Poista"/>
         </form>
        </td>
     </tr>

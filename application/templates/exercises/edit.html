@@ -1,11 +1,13 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h3>Muokataan liikettä {{ exercise.name }}</h3>
-<p>Kuvaus: {{ exercise.description }}</p>
-<p>Yksikkö: {{ exercise.unit }}</p>
-<hr>
+<h3>{{ exercise.name }}</h3>
+<p><b>Kuvaus:</b> {{ exercise.description }}</p>
+<p><b>Toistojen yksikkö:</b> {{ exercise.unit }}</p>
+<p><b>Luonut:</b> {{ exercise.get_creators_name() }}</p>
 
+<hr>
+<i>(jos haluat säilyttää vanhan arvon, jätä kenttä tyhjäksi)</i>
 <form method="POST" action="{{ url_for('exercises_update', exercise_id=exercise.id) }}">
     <table>
       <tr>
@@ -34,6 +36,7 @@
       </tr>
       
     </table>
+    <br>
     {{ form.unit.label }}
     <table>
       <tr>
