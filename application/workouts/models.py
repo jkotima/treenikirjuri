@@ -1,12 +1,13 @@
 from application import db
 from application.models import Base
 
-class Programs(Base):
+class Workouts(Base):
 
-    __tablename__ = "programs"
+    __tablename__ = "workouts"
 
     name = db.Column(db.String(144), nullable=False)
     description = db.Column(db.String(144), nullable=False)
 
-    created_by = db.Column(db.Integer, db.ForeignKey('accounts.id'),
+    program_id = db.Column(db.Integer, db.ForeignKey('programs.id'),
                     nullable=False)
+    

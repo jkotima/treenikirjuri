@@ -30,6 +30,8 @@ from application.events import models
 
 from application.programs import models
 
+from application.workouts import models
+
 # kirjautuminen
 from application.auth.models import Users
 from os import urandom
