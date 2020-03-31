@@ -15,6 +15,8 @@ class Exercises(Base):
     created_by = db.Column(db.Integer, db.ForeignKey('accounts.id'),
                         nullable=False)
 
+    sets = db.relationship('Sets', backref='Exercises', lazy=True)
+
     def __init__(self, name):
         self.name = name
 

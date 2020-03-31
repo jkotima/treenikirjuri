@@ -24,6 +24,8 @@ from application.exercises import views
 from application.auth import models
 from application.auth import views
 
+from application.sets import models
+
 # kirjautuminen
 from application.auth.models import Users
 from os import urandom
