@@ -26,6 +26,8 @@ from application.auth import views
 
 from application.sets import models
 
+from application.events import models
+
 # kirjautuminen
 from application.auth.models import Users
 from os import urandom

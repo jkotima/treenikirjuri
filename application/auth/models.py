@@ -10,6 +10,7 @@ class Users(Base):
     password = db.Column(db.String(144), nullable=False)
 
     exercises = db.relationship('Exercises', backref='Accounts', lazy=True)
+    events = db.relationship('Events', backref='Accounts', lazy=True)
 
     def __init__(self, name, username, password):
         self.name = name

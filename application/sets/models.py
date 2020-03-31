@@ -10,3 +10,6 @@ class Sets(Base):
 
     exercise_id = db.Column(db.Integer, db.ForeignKey('exercises.id'),
                         nullable=False)
+
+    event_id = db.Column(db.Integer, db.ForeignKey('events.id'),
+                        nullable=False)
