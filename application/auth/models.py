@@ -11,6 +11,7 @@ class Users(Base):
 
     exercises = db.relationship('Exercises', backref='Accounts', lazy=True)
     events = db.relationship('Events', backref='Accounts', lazy=True)
+    programs = db.relationship('Programs', backref='Accounts', lazy=True)
 
     def __init__(self, name, username, password):
         self.name = name

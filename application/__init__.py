@@ -28,6 +28,8 @@ from application.sets import models
 
 from application.events import models
 
+from application.programs import models
+
 # kirjautuminen
 from application.auth.models import Users
 from os import urandom
