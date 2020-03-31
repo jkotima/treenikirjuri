@@ -13,7 +13,7 @@ def exercises_index():
         e = Exercises.find_exercises_by_creators_name("")
     else:
         e = Exercises.find_exercises_by_creators_name(created_by)
-    
+
     return render_template("exercises/list.html", exercises = e, form = ExerciseFilterForm())
 
 @app.route("/exercises/new/")

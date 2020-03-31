@@ -20,7 +20,7 @@ class ExerciseEditForm(FlaskForm):
         csrf = False
 
 class ExerciseFilterForm(FlaskForm):
-    createdBy = StringField("Lisääjä:")
+    createdBy = StringField("Lisääjä")
 
     class Meta:
         csrf = False
