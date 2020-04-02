@@ -4,27 +4,28 @@ Käyttäjä kirjautuu sovellukseen.
 
 Sovelluksessa voi luoda treeniohjelman kuntosalille. Treeniohjelma (program) koostuu treeneistä, treeni (workout) koostuu liikkeistä, liike (exercise) koostuu seteistä (sets).
 
-Treenin aikana käyttäjällä on käytössään treenitila, jonka avulla valitun treenin settien toistoista, käytetyistä painoista ja onnistumisista pidetään kirjaa.
+Treenin aikana käyttäjällä on käytössään treenitila, jossa merkataan jokaisen treenitapahtuman aikana tehdyt liikkeet ja niihin liittyvät toistot ja painot.
 
-Settien (toistot, painot, onnistuminen) historiatietoja voidaan tarkastella.
+Treenikertojen historiatietoja voidaan tarkastella.
 
 ## Toimintoja:
 
 * Kirjautuminen
-- Kuntosaliohjelman luominen
+- Kuntosaliohjelman luominen *(tulossa oleva ominaisuus)*
 	* Kuntosaliohjelmaan lisätään treenit (esim. "Maanantai")
 		* Treeneihin lisätään liikkeet (esim. penkkipunnerrus. Valitaan listasta, tai luodaan uusi)
 
-- Kuntosaliohjelman aktivointi
+- Kuntosaliohjelman aktivointi *(tulossa oleva ominaisuus)*
 	* Valitaan käyttäjän omista tai muiden käyttäjien tekemistä ohjelmista
 
 - Treenitila
-	* Treenin valinta (näkymässä näkyvät liikkeet määräytyvät tämän mukaisesti)
+	* Treenin valinta (näkymässä näkyvät liikkeet määräytyvät tämän mukaisesti) *(tulossa oleva ominaisuus)*
 	* Liikkeissä käytettyjen painojen ja toistojen lkm kirjaaminen
-	* Liikkeiden kohdalla näkyy edellisen kerran toistot ja painot
+	* Liikkeiden kohdalla näkyy edellisen kerran toistot ja painot *(tulossa oleva ominaisuus)*
 
 - Historia
-	* Käyttäjä voi tarkastella liikekohtaista edistymistään
+	* Käyttäjä voi tarkastella menneitä treenitapahtumiansa
+	* Käyttäjä voi tarkastella liikekohtaista edistymistään *(tulossa oleva ominaisuus)*
 
 ## Testitunnukset kirjautumiseen:
 * käyttäjätunnus:hello

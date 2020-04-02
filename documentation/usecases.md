@@ -1,25 +1,27 @@
 # Käyttötapaukset
 ## Kirjautuminen
 Käyttäjä kirjautuu sovellukseen omalla käyttäjätunnuksella ja salasanalla.
-## Kuntosaliohjelman luominen
-1. Käyttäjä valitsee päävalikosta 'kuntosaliohjelman luominen'
-2. Käyttäjä luo uuden "treenin" kuntosaliohjelmaan
-   * treenejä on luotavissa useampia
-   * treenille on annettavissa nimi
-3. Käyttäjä valitsee treenin kohdalta 'muokkaa treeniä'
-4. Käyttäjä lisää treeniin liikkeitä (harjoituksia, exercise) luomalla uuden liikkeen
-tai valitsemalla aiemmin luotujen liikkeiden listasta
-## Kuntosaliohjelman aktivointi
-Käyttäjää valitsee päävalikosta kuntosaliohjelman ja aktivoi sen.
-Valitun kuntosaliohjelman treenit ovat nyt valittavissa treenitilassa.
+
+## Liikkeiden lisääminen
+1. Käyttäjä valitsee valikosta 'lisää liike'
+2. Käyttäjä antaa liikkeelle nimen, kuvauksen ja liikkeen kirjaamisessa käytetyn yksikön (esim. kg)
+3. Liike tallentuu tietokantaan
+
+## Liikkeiden listaaminen
+1. Käyttäjä valitsee päävalikosta 'listaa liikkeet'
+2. Käyttäjä voi halutessaan hakea liikkeitä lisääjän perusteella
+3. Näkymässä voi myös poistaa liikkeen
+
+
 ## Liikekohtaisten tietojen tallentaminen treenin aikana
-1. Käyttäjä valitsee päävalikosta treenitilan
-2. Treenitilassa käyttäjä valitsee aluksi sen treenin, jonka aikoo sillä kerralla suorittaa (valittavissa olevat treenit 
-ovat aktivoidun treeniohjelman mukaiset). Valinnan jälkeen kyseisen treenin liikkeet tulevat näkyviin.
-3. Käyttäjä merkitsee jokaisen liikkeen kohdalle toteutuneiden toistojen lukumäärän ja onnistumisen (joo/ei)
-   * näkyvissä myös liikkeen viimekertaiset painot/toistot/onnistuminen
-4. käyttäjä lopettaa treenin valitsemalla 'lopeta treeni'. Tiedot tallentuvat tietokantaan
+
+1. Käyttäjä valitsee päävalikosta 'Uusi treenitapahtuma"
+2. Käyttäjä kirjaa ylös tekemänsä liikkeen ja siihen toistojen määrän ja käytetyn painon 
+3. Käyttäjä voi lisätä treenin tuntemuksia yms. kommenttina  
+4. Tiedot tallentuvat tietokantaan merkinnän yhteydessä
+
 ## Liikekohtaisen historian tarkastelu
+
 1. Käyttäjä valitsee päävalikosta 'historia'
 2. Käyttäjä valitsee liikkeen listasta
 3. Liikkeen tiedot listautuvat aikajärjestyksessä
@@ -27,4 +29,16 @@ ovat aktivoidun treeniohjelman mukaiset). Valinnan jälkeen kyseisen treenin lii
 5. Käyttäjä voi suodattaa listasta epäonnistuneet liikkeet
 
 
+## Treenihistorian tarkastelu
+
+1. Käyttäjä valitsee päävalikosta 'treenihistoria'
+2. Käyttäjä voi tarkastella ja myös muokata treenejään
+
+#Tulossa olevia ominaisuuksia:
+
+## Kuntosaliohjelman luominen
+## Kuntosaliohjelman aktivointi
+* tällöin"Uusi treenitapahtuma" -näkymässä näkyvissä suoraan treeniohjelma ja liikkeen viimekertaiset painot/toistot
+## Treenihistorian lisäominaisuudet
+* esim. liikekohtainen kehittyminen
 
