@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<p>Käyttäjä: {{ event.get_users_name() }}</p>
+<p>Aloitusaika: {{ event.date_created }} </p>
+
+<form method="POST" action="{{ url_for('events_add_set', event_id=event_id) }}">
+    {{ form.exercise }}
+    {{ form.reps(placeholder="Toistot") }}
+    {{ form.amount(placeholder="Määrä") }}
+    <input type="submit" value="Lisää"/>
+</form>
+
+{% for set in sets %}
+<tr>
+  <td>{{ set.exercise }}</td>
+  <td>{{ set.reps }}</td>
+  <td>{{ set.amount }}</td>
+  <td>{{ set.unit }}</td>
+</tr>
+<br>
+
+
+{% endfor %}
+
+{% endblock %}

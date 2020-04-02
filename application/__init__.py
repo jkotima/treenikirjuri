@@ -16,21 +16,36 @@ else:
 db = SQLAlchemy(app)
 
 # sovelluksen toiminnallisuudet
-from application import views
+
 
 from application.exercises import models
-from application.exercises import views
-
 from application.auth import models
-from application.auth import views
-
+from application.programs import models
 from application.sets import models
-
+from application.workouts import models
 from application.events import models
 
-from application.programs import models
+#luodaan taulut tietokantaan tarvittaessa
+try: 
+    db.create_all()
+except:
+    pass
 
-from application.workouts import models
+
+
+from application import views
+from application.exercises import views
+
+
+
+from application.auth import views
+
+
+from application.events import views
+
+
+
+
 
 # kirjautuminen
 from application.auth.models import Users
@@ -48,8 +63,3 @@ login_manager.login_message = "Please login to use this functionality."
 def load_user(user_id):
     return Users.query.get(user_id)
 
-#luodaan taulut tietokantaan tarvittaessa
-try: 
-    db.create_all()
-except:
-    pass
