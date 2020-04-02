@@ -5,13 +5,7 @@ from application.exercises.models import Exercises
 
 
 class AddSetToEventForm(FlaskForm):
-    exercises = Exercises.query.all()
-    c = []
-
-    for exercise in exercises:
-        c.append((exercise.id, exercise.name))
-
-    exercise = SelectField('Exercise', choices=c)
+    exercise = SelectField('Exercise', coerce=int)
     reps = IntegerField('Reps')
     amount = FloatField("Amount", [validators.required()])
 

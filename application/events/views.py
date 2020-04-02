@@ -24,7 +24,10 @@ def events_edit(event_id):
     sets = Sets.find_sets_by_event_id(event_id)
     event = Events.query.get(event_id)
 
-    return render_template("events/edit.html", form = AddSetToEventForm(), event_id=event_id, sets=sets, event=event)
+    form = AddSetToEventForm()
+    form.exercise.choices = [(g.id, g.name) for g in Exercises.query.all()]
+
+    return render_template("events/edit.html", form = form, event_id=event_id, sets=sets, event=event)
 
 
 @app.route("/events/addSet/<event_id>/", methods=["POST"])
