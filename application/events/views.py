@@ -12,7 +12,8 @@ from application.events.forms import AddSetToEventForm, CommentEventForm
 @login_required
 def events_list():
 
-    return render_template("events/list.html", events =  Events.query.filter_by(user_id=current_user.id))
+    return render_template("events/list.html",
+         events =  Events.query.filter_by(user_id=current_user.id).order_by('date_created'))
 
 @app.route("/events/new", methods=["GET"])
 @login_required
