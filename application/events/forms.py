@@ -13,4 +13,4 @@ class AddSetToEventForm(FlaskForm):
         csrf = False
 
 class CommentEventForm(FlaskForm):
-    comments = TextAreaField('Comments', [validators.optional(), validators.length(max=110)])
+    comments = TextAreaField('Comments', [validators.optional(), validators.length(max=144)])
