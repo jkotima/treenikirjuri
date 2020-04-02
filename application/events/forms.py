@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import RadioField, validators, SelectField, FloatField, IntegerField
+from wtforms import validators, SelectField, FloatField, IntegerField, TextAreaField
 from application.events.models import Events
 from application.exercises.models import Exercises
 
@@ -11,3 +11,6 @@ class AddSetToEventForm(FlaskForm):
 
     class Meta:
         csrf = False
+
+class CommentEventForm(FlaskForm):
+    comments = TextAreaField('Comments', [validators.optional(), validators.length(max=110)])

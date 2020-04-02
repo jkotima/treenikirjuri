@@ -23,7 +23,7 @@ class Sets(Base):
     
     @staticmethod
     def find_sets_by_event_id(event_id):
-        stmt = text("SELECT exercises.name, sets.reps, sets.amount, exercises.unit FROM exercises"
+        stmt = text("SELECT exercises.name, sets.reps, sets.amount, exercises.unit, sets.id FROM exercises"
                     " LEFT JOIN sets ON exercise_id = exercises.id"
                     " WHERE event_id = :id").params(id=event_id)
                     
@@ -31,6 +31,6 @@ class Sets(Base):
         results = db.engine.execute(stmt)
         r = []
         for row in results:
-            r.append({"exercise":row[0], "reps":row[1], "amount":row[2], "unit":row[3]})
+            r.append({"exercise":row[0], "reps":row[1], "amount":row[2], "unit":row[3], "id":row[4]})
 
         return r

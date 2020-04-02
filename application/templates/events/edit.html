@@ -2,26 +2,64 @@
 
 {% block body %}
 
-<p>Käyttäjä: {{ event.get_users_name() }}</p>
-<p>Aloitusaika: {{ event.date_created }} </p>
+<h3>Treenitapahtuma #{{ event.id }} </h3>
+<hr>
+<div class="container">
+  <form method="POST" action="{{ url_for('events_add_set', event_id=event_id) }}">
+      {{ form.exercise }}
+      {{ form.reps(placeholder="Toistot") }}x
+      {{ form.amount(placeholder="Määrä") }}
+      <input type="submit" value="Lisää"/>
+  </form>
+</div>
+<hr>
 
-<form method="POST" action="{{ url_for('events_add_set', event_id=event_id) }}">
-    {{ form.exercise }}
-    {{ form.reps(placeholder="Toistot") }}
-    {{ form.amount(placeholder="Määrä") }}
-    <input type="submit" value="Lisää"/>
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>Liike</th>
+        <th>Toistot</th>
+        <th>Määrä</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for set in sets %} 
+      <tr>
+          <td>{{ set.exercise }}</td>
+          <td>{{ set.reps }}</td>
+          <td>{{ set.amount }}{{ set.unit }}</td>
+          <td style="text-align:right">
+            <form method="POST" action="{{ url_for('sets_delete', event_id=event_id, set_id=set.id) }}">
+              <button type="submit" class="btn-sm btn-danger">Poista</button>
+            </form>
+          </td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+
+
+<div class="container">
+  <hr>
+  <form method="POST" action="{{ url_for('events_comment', event_id=event_id) }}">
+    {{ form2.comments }}
+    <br>
+    <input type="submit" value="Päivitä kommentti"/>
+  </form>
+</div>
+
+<br>
+<form method="GET" action="{{ url_for('events_list')}}">
+  <button type="submit" class="btn btn-success">Valmis</button>
 </form>
-
-{% for set in sets %}
-<tr>
-  <td>{{ set.exercise }}</td>
-  <td>{{ set.reps }}</td>
-  <td>{{ set.amount }}</td>
-  <td>{{ set.unit }}</td>
-</tr>
 <br>
 
-
-{% endfor %}
+<form method="POST" action="{{ url_for('events_delete', event_id=event_id) }}">
+  <button type="submit" class="btn-sm btn-danger">Poista treenitapahtuma ja sen tiedot</button>
+</form>
 
 {% endblock %}
