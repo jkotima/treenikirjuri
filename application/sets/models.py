@@ -34,3 +34,13 @@ class Sets(Base):
             r.append({"exercise":row[0], "reps":row[1], "amount":row[2], "unit":row[3], "id":row[4]})
 
         return r
+    
+    @staticmethod
+    def find_total_lifted(user_id):
+        stmt = text("SELECT SUM(sets.reps*sets.amount) AS weight FROM sets"
+                    " LEFT JOIN exercises ON sets.exercise_id = exercises.id"
+                    " LEFT JOIN events ON sets.event_id = events.id"
+                    " WHERE exercises.unit = 'kg' AND events.user_id = :id").params(id=user_id)
+
+        result = db.engine.execute(stmt).fetchone().weight
+        return result

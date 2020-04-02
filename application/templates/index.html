@@ -1,7 +1,14 @@
 {% extends "layout.html" %}
 
 {% block body %}
+{% if current_user.is_authenticated %}
   <p>
-    Tervetuloa!
+    Tervetuloa {{ current_user.name }}! Olet nostanut rautaa yhteensä {{ amountlifted }} kiloa.
   </p>
+{% else %}
+  <p>
+    Et ole kirjautunut.
+  </p>
+{% endif %}
+
 {% endblock %}
