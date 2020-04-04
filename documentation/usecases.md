@@ -34,7 +34,7 @@ Käyttäjä kirjautuu sovellukseen omalla käyttäjätunnuksella ja salasanalla.
 1. Käyttäjä valitsee päävalikosta 'treenihistoria'
 2. Käyttäjä voi tarkastella ja myös muokata treenejään
 
-#Tulossa olevia ominaisuuksia:
+# Tulossa olevia ominaisuuksia:
 
 ## Kuntosaliohjelman luominen
 ## Kuntosaliohjelman aktivointi
