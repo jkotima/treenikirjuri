@@ -28,7 +28,7 @@ class Exercises(Base):
     def find_exercises_by_creators_name(created_by):
         stmt = text("SELECT exercises.id, exercises.name, exercises.description, accounts.name, exercises.created_by FROM exercises"
                     " LEFT JOIN accounts ON created_by = accounts.id"
-                    " WHERE accounts.name"
+                    " WHERE LOWER(accounts.name)"
                     " LIKE :name").params(name=created_by+"%")
                     
         results = db.engine.execute(stmt)

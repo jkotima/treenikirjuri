@@ -54,3 +54,4 @@ from application.exercises import views
 from application.auth import views
 from application.events import views
 from application.sets import views
+from application.programs import views

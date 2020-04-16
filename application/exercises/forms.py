@@ -5,7 +5,7 @@ from application.exercises.models import Exercises
 
 class ExerciseForm(FlaskForm):
     name = StringField("Nimi", [validators.Length(min=2, max=144)])
-    description = StringField("Kuvaus")
+    description = StringField("Kuvaus", [validators.Length(min=2, max=144)])
     unit = RadioField('Toistoissa käytetty yksikkö', choices=[('kg','Kilogramma'),('min','Minuutti'),('sec', 'Sekunti')], default='kg')
     
     class Meta:
