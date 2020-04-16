@@ -3,9 +3,10 @@ from flask import render_template, request, url_for, redirect
 from flask_login import login_required, current_user
 from application.exercises.models import Exercises
 from application.exercises.forms import ExerciseForm, ExerciseEditForm, ExerciseFilterForm
+from application.sets.models import Sets
 
 @app.route("/exercises", methods=["GET"])
-#@login_required
+@login_required
 def exercises_index():
     created_by = request.args.get('createdBy')
 
@@ -26,6 +27,14 @@ def exercises_form():
 def exercises_delete(exercise_id):   
     e = Exercises.query.get(exercise_id)
 
+    #authorization
+    if e.created_by != current_user.id:
+        return redirect(url_for("exercises_index"))
+
+    #delete all sets of this exercise
+    for s in Sets.query.filter_by(exercise_id = exercise_id):
+        db.session.delete(s)
+    
     db.session.delete(e)
     db.session.commit()
 
@@ -36,6 +45,10 @@ def exercises_delete(exercise_id):
 def exercises_edit(exercise_id):   
     e = Exercises.query.get(exercise_id)
     
+    #authorization
+    if e.created_by != current_user.id:
+        return redirect(url_for("exercises_index"))
+
     return render_template("exercises/edit.html", form = ExerciseEditForm(), exercise = e)
 
 @app.route("/exercises/edit/<exercise_id>/", methods=["POST"])
@@ -43,6 +56,10 @@ def exercises_edit(exercise_id):
 def exercises_update(exercise_id):
     form = ExerciseForm(request.form)   
     e = Exercises.query.get(exercise_id)
+
+    #authorization
+    if e.created_by != current_user.id:
+        return redirect(url_for("exercises_index"))
 
     if form.name.data != "":
         e.name = form.name.data
