@@ -26,7 +26,7 @@ class Exercises(Base):
 
     @staticmethod
     def find_exercises_by_creators_name(created_by):
-        stmt = text("SELECT exercises.id, exercises.name, exercises.description, accounts.name FROM exercises"
+        stmt = text("SELECT exercises.id, exercises.name, exercises.description, accounts.name, exercises.created_by FROM exercises"
                     " LEFT JOIN accounts ON created_by = accounts.id"
                     " WHERE accounts.name"
                     " LIKE :name").params(name=created_by+"%")
@@ -34,6 +34,6 @@ class Exercises(Base):
         results = db.engine.execute(stmt)
         r = []
         for row in results:
-            r.append({"id":row[0], "name":row[1], "description":row[2], "creators_name":row[3]})
+            r.append({"id":row[0], "name":row[1], "description":row[2], "creators_name":row[3], "created_by":row[4]})
 
         return r
