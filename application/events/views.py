@@ -1,4 +1,4 @@
-from application import app, db
+from application import app, db, login_manager
 from flask import render_template, request, url_for, redirect
 from flask_login import login_required, current_user
 
@@ -11,7 +11,6 @@ from application.events.forms import AddSetToEventForm, CommentEventForm
 @app.route("/events/", methods=["GET"])
 @login_required
 def events_list():
-
     return render_template("events/list.html",
          events =  Events.query.filter_by(user_id=current_user.id).order_by('date_created'))
 
@@ -25,11 +24,15 @@ def events_create():
     return redirect(url_for("events_edit", event_id=event.id))
 
 @app.route("/events/<event_id>/", methods=["GET"])
-#@login_required
+@login_required
 def events_edit(event_id):
     sets = Sets.find_sets_by_event_id(event_id)
     event = Events.query.get(event_id)
-
+    
+    #authorization
+    if event.user_id != current_user.id:
+        return redirect(url_for("events_list"))
+    
     form = AddSetToEventForm()
     form.exercise.choices = [(g.id, g.name) for g in Exercises.query.all()]
     form2 = CommentEventForm()
@@ -39,10 +42,13 @@ def events_edit(event_id):
 
 
 @app.route("/events/addSet/<event_id>/", methods=["POST"])
-#@login_required
+@login_required
 def events_add_set(event_id):
     form = AddSetToEventForm(request.form)
-    print(form.amount.data)
+
+    #authorization
+    if Events.query.get(event_id).user_id != current_user.id:
+        return login_manager.unauthorized()
 
     set = Sets(form.reps.data, form.amount.data, form.exercise.data, event_id)
     db.session().add(set)
@@ -51,9 +57,13 @@ def events_add_set(event_id):
     return redirect(url_for("events_edit", event_id=event_id))
 
 @app.route("/events/delete/<event_id>/", methods=["POST"])
-#@login_required
+@login_required
 def events_delete(event_id):
     e = Events.query.get(event_id)
+    
+    #authorization
+    if e.user_id != current_user.id:
+        return login_manager.unauthorized()
 
     #delete all sets of this event
     for s in Sets.query.filter_by(event_id = event_id):
@@ -65,10 +75,15 @@ def events_delete(event_id):
     return redirect(url_for("events_list")) 
 
 @app.route("/events/comment/<event_id>/", methods=["POST"])
-#@login_required
+@login_required
 def events_comment(event_id):
-    form = CommentEventForm(request.form)
     e = Events.query.get(event_id)
+    
+    #authorization
+    if e.user_id != current_user.id:
+        return login_manager.unauthorized()
+
+    form = CommentEventForm(request.form)
     e.comment = form.comments.data
     db.session.add(e)
     db.session.commit()

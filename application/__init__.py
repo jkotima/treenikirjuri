@@ -32,17 +32,6 @@ except:
     pass
 
 
-
-from application import views
-from application.exercises import views
-from application.auth import views
-from application.events import views
-from application.sets import views
-
-
-
-
-
 # kirjautuminen
 from application.auth.models import Users
 from os import urandom
@@ -59,3 +48,9 @@ login_manager.login_message = "Please login to use this functionality."
 def load_user(user_id):
     return Users.query.get(user_id)
 
+# näkymät
+from application import views
+from application.exercises import views
+from application.auth import views
+from application.events import views
+from application.sets import views
