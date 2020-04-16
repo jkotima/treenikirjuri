@@ -23,10 +23,7 @@
           <a class="nav-link" href="{{ url_for('events_list') }}">Treenihistoria</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('exercises_index') }}">Listaa liikkeet</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('exercises_form') }}">Lisää liike</a>
+          <a class="nav-link" href="{{ url_for('exercises_index') }}">Liikkeet</a>
         </li>
         {% else %}
         <a class="nav-link" href="{{ url_for('auth_register') }}">Rekisteröi</a>
