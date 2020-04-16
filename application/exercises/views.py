@@ -57,9 +57,13 @@ def exercises_update(exercise_id):
     form = ExerciseForm(request.form)   
     e = Exercises.query.get(exercise_id)
 
+    if not form.validate():
+        return render_template("exercises/edit.html", form = form, exercise = e)
+
     #authorization
     if e.created_by != current_user.id:
         return redirect(url_for("exercises_index"))
+
 
     if form.name.data != "":
         e.name = form.name.data
