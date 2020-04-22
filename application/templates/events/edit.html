@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 
 {% block body %}
-
 <h3>Treenitapahtuma #{{ event.id }} </h3>
-<hr>
+
+<br>
 <div class="container">
   <form method="POST" action="{{ url_for('events_add_set', event_id=event_id) }}">
       {{ form.exercise }}

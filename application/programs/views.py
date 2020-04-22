@@ -3,7 +3,10 @@ from flask import render_template, request, url_for, redirect
 from flask_login import login_required, current_user
 
 from application.programs.models import Programs
-from application.programs.forms import ProgramForm, ProgramFilterForm
+from application.workouts.models import Workouts
+from application.exercises.models import Exercises
+
+from application.programs.forms import ProgramForm, ProgramFilterForm, ProgramAddWorkoutForm, AddExerciseToWorkoutForm
 
 
 @app.route("/programs/", methods=["GET"])
@@ -36,16 +39,36 @@ def programs_create():
     db.session().add(p)
     db.session().commit()
 
-    return redirect(url_for("programs_index"))
+    return redirect(url_for("programs_edit", program_id = p.id))
 
+@app.route("/programs/edit/<program_id>/", methods=["GET"])
+#@login_required
+def programs_edit(program_id):   
+    p = Programs.query.get(program_id)
+    
+    #authorization
+    #if p.created_by != current_user.id:
+    #    return redirect(url_for("programs_index"))
 
-#delete this
-@app.route("/programs/asd", methods=["GET"])
+    exerciseform = AddExerciseToWorkoutForm()
+    exerciseform.exercise.choices = [(g.id, g.name) for g in Exercises.query.all()]
+
+    return render_template("programs/edit.html", program = p, workoutform = ProgramAddWorkoutForm(),
+     workouts =  Workouts.query.filter_by(program_id=program_id).order_by('date_created'),
+     exerciseform = exerciseform)
+
+@app.route("/programs/addWorkout/<program_id>/", methods=["POST"])
 @login_required
-def programs_create2():
-    program = Programs(current_user.id, "nimi", "kuvaus")
-    db.session().add(program)
+def programs_add_workout(program_id):
+    form = ProgramAddWorkoutForm(request.form)
+    p = Programs.query.get(program_id)
+    
+    #authorization
+    if p.created_by != current_user.id:
+        return redirect(url_for("programs_index"))
+
+    workout = Workouts(form.name.data, form.description.data, program_id)
+    db.session().add(workout)
     db.session().commit()
 
-    return redirect(url_for("events_list"))
-
+    return redirect(url_for("programs_edit", program_id=program_id))
