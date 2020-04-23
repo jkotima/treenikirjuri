@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3>Treeniohjelma: {{ program.name }}</h3>
+<p><i>{{ program.description }}</i></p>
+
+<div class="card">
+    <ul class="list-group list-group-flush">
+        {% for workout in workouts %}
+        <li class="list-group-item">
+            
+            <div class="row">                     
+                <div class="col">
+                    <b>{{ workout.name }}</b>
+                    <p><i>{{ workout.description }}</i></p>
+                </div>        
+            </div>
+            
+                        
+            <ul class="list-group list-group-flush">              
+                <li class="list-group-item">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>Liike</th>
+                                <th>Sarjat</th>
+                                <th>Toistot</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for exercise in workout.get_exercises() %}
+                            <tr>
+                                <td>{{ exercise.name }}</td>
+                                <td>{{ exercise.sets }}</td>
+                                <td>{{ exercise.reps }}</td>
+                            </tr>
+                            
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </li>
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<br>
+
+{% if program.created_by == current_user.id %} 
+<form method="GET" action="{{ url_for('programs_edit', program_id=program.id) }}">
+    <button type="submit" class="btn-sm btn-success">Muokkaa</button>
+</form>
+{% endif %}
+
+<form method="GET" action="{{ url_for('programs_index')}}">
+    <button type="submit" class="btn btn-success">Valmis</button>
+</form>
+{% endblock %}

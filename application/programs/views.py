@@ -59,6 +59,19 @@ def programs_edit(program_id):
      workouts =  Workouts.query.filter_by(program_id=program_id).order_by('date_created'),
      exerciseform = exerciseform)
 
+@app.route("/programs/<program_id>/", methods=["GET"])
+@login_required
+def programs_view(program_id):   
+    p = Programs.query.get(program_id)
+
+    exerciseform = AddExerciseToWorkoutForm()
+    exerciseform.exercise.choices = [(g.id, g.name) for g in Exercises.query.all()]
+
+    return render_template("programs/view.html", program = p, workoutform = ProgramAddWorkoutForm(),
+     workouts =  Workouts.query.filter_by(program_id=program_id).order_by('date_created'),
+     exerciseform = exerciseform)
+
+
 @app.route("/programs/addWorkout/<program_id>/", methods=["POST"])
 @login_required
 def programs_add_workout(program_id):
