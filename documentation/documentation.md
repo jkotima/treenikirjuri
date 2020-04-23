@@ -56,6 +56,6 @@ Treeniohjelmien listausnäkymässä, klikkaa haluamasi treeniohjelman nimeä.
 Treeniohjelmien listausnäkymässä, klikkaa haluamasi treeniohjelman kohdalta muokkaa/poista.
 
 ## Muuta materiaalia
-[Tietokantakaavio](../master/documentation/dbdiagram.png)
-[Tietokantadokumentaatio](../master/documentation/dbdoc.md)
-[Käyttötapaukset ja niihin liittyvät tietokantakyselyt](../master/documentation/usecases.md)
+[Tietokantakaavio](../documentation/dbdiagram.png)
+[Tietokantadokumentaatio](../documentation/dbdoc.md)
+[Käyttötapaukset ja niihin liittyvät tietokantakyselyt](../documentation/usecases.md)
