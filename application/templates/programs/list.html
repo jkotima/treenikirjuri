@@ -1,8 +1,25 @@
 {% extends "layout.html" %}
 
 {% block body %}
+
 <h3>Treeniohjelmat</h3>
 
+<div class="row">                     
+  <div class="col text-right">
+    {% if active_program_name %}
+    <b>Aktiivinen treenohjelma:</b> {{ active_program_name }}
+    <form method="POST" action="{{ url_for('programs_deactivate') }}">
+      <button type="submit" class="btn-sm btn-outline-primary">Deaktivoi</button>
+    </form>
+    {% else %}
+    <b>Ei aktiivista treeniohjelmaa</b>
+    <br><i>(Aktivoi treeniohjelma alapuolelta)</i>
+    
+    {% endif %}
+  </div>                
+</div>
+
+<br>
 <div class="container">
     <div class="row">
       <div class="col"><a type="button" href="{{ url_for('programs_form') }}" class="btn btn-outline-primary btn-block">Uusi treeniohjelma...</a></div>
@@ -29,6 +46,7 @@
             <th>Nimi</th>
             <th>Kuvaus</th>
             <th>Lisääjä</th>
+            <th></th>
           </tr>
           {% else %}
           <i>ei tuloksia</i>
@@ -40,6 +58,24 @@
             <td><a href="/programs/edit/{{ program.id }}">{{ program.name }}</a></td>
             <td>{{ program.description }}</td>
             <td>{{ program.creators_name }}</td>
+            <td style="text-align:right" class="col-md-1">
+              
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <form method="POST" action="{{ url_for('programs_activate', program_id=program.id) }}">
+                  <button type="submit" class="btn-sm btn-outline-primary">Aktivoi</button>
+                </form>
+                {% if program.created_by == current_user.id %}  
+                <form method="GET" action="{{ url_for('programs_edit', program_id=program.id) }}">
+                  <button type="submit" class="btn-sm btn-success">Muokkaa</button>
+                </form>
+                <form method="POST" action="{{ url_for('programs_delete', program_id=program.id) }}">
+                  <button type="submit" class="btn-sm btn-danger">Poista</button>
+                </form>
+                {% endif %}
+              </div>
+
+
+            </td>
            </tr>
           {% endfor %}
           

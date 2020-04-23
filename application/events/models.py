@@ -12,9 +12,7 @@ class Events(Base):
 
     user_id = db.Column(db.Integer, db.ForeignKey('accounts.id'),
                         nullable=False)
-    
-    users = db.relationship('Users', backref='Events', lazy=True)
-    
+       
     def __init__(self, user_id):
         self.user_id = user_id
 
