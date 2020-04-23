@@ -31,7 +31,7 @@ class Workouts(Base):
     
     #oli pakko tehdä ra'alla sql, koska sets ja reps ei pääse muuten käsiksi
     def add_exercise(self, exercise_id, sets, reps):
-        stmt = text("INSERT or REPLACE INTO workout_exercise (workout_id, exercise_id, sets, reps)"
+        stmt = text("INSERT INTO workout_exercise (workout_id, exercise_id, sets, reps)" # INSERT or REPLACE  INTO toimii sqlitessä, ei postgressa ):
                     " VALUES (:workout_id, :exercise_id, :sets, :reps)").params(workout_id=self.id, exercise_id=exercise_id, sets=sets, reps=reps)
         db.engine.execute(stmt)
 
