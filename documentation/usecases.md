@@ -1,3 +1,4 @@
+*keskeneräinen dokumentti: tähän on tulossa käyttötapauksiin liittyvät sql-kyselyt*
 # Käyttötapaukset
 ## Kirjautuminen
 Käyttäjä kirjautuu sovellukseen omalla käyttäjätunnuksella ja salasanalla.
@@ -34,9 +35,16 @@ Käyttäjä kirjautuu sovellukseen omalla käyttäjätunnuksella ja salasanalla.
 1. Käyttäjä valitsee päävalikosta 'treenihistoria'
 2. Käyttäjä voi tarkastella ja myös muokata treenejään
 
-# Tulossa olevia ominaisuuksia:
-
 ## Kuntosaliohjelman luominen
+
+1. Käyttäjä valitsee päävalikosta 'treeniohjelmat'
+2. Käyttäjä valitsee 'Uusi treeniohjelma'
+3. Käyttäjä antaa ohjelmalle nimen ja kuvauksen ja valitsee valmis
+4. Käyttäjä lisää treenikerran nimen ja kuvauksen kanssa ja valitsee 'lisää treenikerta'
+5. Käyttäjä lisää liikkeen treenikertaan valitsemalla alasvetovalikosta liikkeen ja täyttämällä kenttiin sarjojen
+ja toistojen määrät. Lopuksi painaa 'lisää liike treeniikiertaan'
+
+# Tulevia ominaisuuksia
 ## Kuntosaliohjelman aktivointi
 * tällöin"Uusi treenitapahtuma" -näkymässä näkyvissä suoraan treeniohjelma ja liikkeen viimekertaiset painot/toistot
 ## Treenihistorian lisäominaisuudet
