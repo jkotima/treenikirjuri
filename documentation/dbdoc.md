@@ -1,6 +1,6 @@
 ## Tietokantaskeema
-[Tietokantakaavio](../master/documentation/dbdiagram.png)
-
+[Tietokantakaavio](../documentation/dbdiagram.png)
+```sql
 CREATE TABLE accounts (
 	id INTEGER NOT NULL, 
 	date_created DATETIME, 
@@ -73,3 +73,4 @@ CREATE TABLE events (
 	PRIMARY KEY (id), 
 	FOREIGN KEY(user_id) REFERENCES accounts (id)
 );
+```
