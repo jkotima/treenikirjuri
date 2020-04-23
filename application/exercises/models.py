@@ -5,7 +5,6 @@ from application.auth.models import Users
 
 
 class Exercises(Base):
-
     __tablename__ = "exercises"
 
     name = db.Column(db.String(144), nullable=False) 
@@ -26,7 +25,8 @@ class Exercises(Base):
 
     @staticmethod
     def find_exercises_by_creators_name(created_by):
-        stmt = text("SELECT exercises.id, exercises.name, exercises.description, accounts.name, exercises.created_by FROM exercises"
+        stmt = text("SELECT exercises.id, exercises.name, exercises.description, accounts.name, exercises.created_by"
+                    " FROM exercises"
                     " LEFT JOIN accounts ON created_by = accounts.id"
                     " WHERE LOWER(accounts.name)"
                     " LIKE :name").params(name=created_by+"%")

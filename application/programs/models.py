@@ -19,8 +19,8 @@ class Programs(Base):
         self.name = name
         self.description = description
 
-    # set active_program null from those users having selected this
-    # as active_program
+    # set active_program null from users having selected this
+    # as their active_program
     def set_references_null(self):
         stmt = text("UPDATE accounts SET active_program = NULL"
                     " WHERE active_program = :id").params(id=self.id)        

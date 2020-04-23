@@ -58,7 +58,7 @@
                 <li class="list-group-item" >
                     <form method="POST" action="{{ url_for('workouts_add_exercise', program_id=program.id, workout_id=workout.id) }}">
                         {{ exerciseform.exercise(placeholder="Harjoitus") }}
-                        {{ exerciseform.sets(placeholder="Setit") }}
+                        {{ exerciseform.sets(placeholder="Sarjat") }}
                         {{ exerciseform.reps(placeholder="Toistot") }}
 
                         <button type="submit" class="btn-sm btn-success">Lisää liike treenikertaan</button>

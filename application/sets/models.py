@@ -3,7 +3,6 @@ from application.models import Base
 from sqlalchemy.sql import text
 
 class Sets(Base):
-
     __tablename__ = "sets"
 
     reps = db.Column(db.Integer)

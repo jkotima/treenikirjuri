@@ -146,7 +146,7 @@ cython_debug/
 media
 static
 
-exercises.db
+treenikirjuri.db
 .vscode
 vscode/
 .vscode/

@@ -8,7 +8,6 @@ from application.exercises.models import Exercises
 
 from application.programs.forms import ProgramForm, ProgramFilterForm, ProgramAddWorkoutForm, AddExerciseToWorkoutForm
 
-
 @app.route("/programs/", methods=["GET"])
 @login_required
 def programs_index():
@@ -67,10 +66,8 @@ def programs_view(program_id):
     exerciseform = AddExerciseToWorkoutForm()
     exerciseform.exercise.choices = [(g.id, g.name) for g in Exercises.query.all()]
 
-    return render_template("programs/view.html", program = p, workoutform = ProgramAddWorkoutForm(),
-     workouts =  Workouts.query.filter_by(program_id=program_id).order_by('date_created'),
-     exerciseform = exerciseform)
-
+    return render_template("programs/view.html", program = p, 
+        workouts = Workouts.query.filter_by(program_id=program_id).order_by('date_created'))
 
 @app.route("/programs/addWorkout/<program_id>/", methods=["POST"])
 @login_required

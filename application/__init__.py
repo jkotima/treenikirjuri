@@ -10,14 +10,12 @@ import os
 if os.environ.get("HEROKU"):
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
 else:
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///exercises.db"    
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///treenikirjuri.db"    
     app.config["SQLALCHEMY_ECHO"] = True
 
 db = SQLAlchemy(app)
 
 # sovelluksen toiminnallisuudet
-
-
 from application.exercises import models
 from application.auth import models
 from application.programs import models

@@ -35,8 +35,10 @@ def events_edit(event_id):
     
     form = AddSetToEventForm()
     form.exercise.choices = [(g.id, g.name) for g in Exercises.query.all()]
+
     form2 = CommentEventForm()
     form2.comments.data = event.comment
+
     return render_template("events/edit.html", form = form, form2 = form2, 
                 event_id=event_id, sets=sets, event=event)
 

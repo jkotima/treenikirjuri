@@ -3,7 +3,6 @@ from application.models import Base
 from application.programs.models import Programs
 
 class Users(Base):
-
     __tablename__ = "accounts"
   
     name = db.Column(db.String(144), nullable=False)
@@ -12,7 +11,6 @@ class Users(Base):
 
     exercises = db.relationship('Exercises', backref='Users', lazy=True)
     events = db.relationship('Events', backref='Users', lazy=True)
-    #programs = db.relationship('Programs', backref='Users', lazy=True)
     
     active_program = db.Column(db.Integer, db.ForeignKey('programs.id'),
                         nullable=True)

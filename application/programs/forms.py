@@ -23,7 +23,7 @@ class ProgramAddWorkoutForm(FlaskForm):
 
 class AddExerciseToWorkoutForm(FlaskForm):
     exercise = SelectField('Harjoitus', coerce=int)
-    sets = IntegerField('Setit')
+    sets = IntegerField('Sarjat')
     reps = IntegerField('Toistot')
     class Meta:
         csrf = False

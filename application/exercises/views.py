@@ -97,4 +97,3 @@ def exercises_create():
     db.session().commit()
 
     return redirect(url_for("exercises_index"))
-
