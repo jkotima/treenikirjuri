@@ -1,7 +1,6 @@
 {% extends "layout.html" %}
 
 {% block body %}
-
 <div class="row">  
   <div class="col">
     <h3>Treenitapahtuma #{{ event.id }} </h3>
@@ -150,5 +149,4 @@ Lisää mukautettu liike...
 <form method="POST" action="{{ url_for('events_delete', event_id=event_id) }}">
   <button type="submit" class="btn-sm btn-danger">Poista treenitapahtuma ja sen tiedot</button>
 </form>
-
 {% endblock %}

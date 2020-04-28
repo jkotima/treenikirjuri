@@ -25,6 +25,14 @@ def events_create():
 
     return redirect(url_for("events_edit", event_id=event.id))
 
+@app.route("/events/continue", methods=["GET"])
+@login_required
+def events_continue():
+
+    latest_event_id = Events.query.filter_by(user_id=current_user.id).order_by(Events.id.desc()).first().id
+
+    return redirect(url_for("events_edit", event_id=latest_event_id))
+
 @app.route("/events/<event_id>/", methods=["GET"])
 @login_required
 def events_edit(event_id):
