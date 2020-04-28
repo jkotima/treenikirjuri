@@ -37,3 +37,5 @@ class Exercises(Base):
             r.append({"id":row[0], "name":row[1], "description":row[2], "creators_name":row[3], "created_by":row[4]})
 
         return r
+
+        

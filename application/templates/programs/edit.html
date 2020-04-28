@@ -40,7 +40,7 @@
                                 <td>{{ exercise.sets }}</td>
                                 <td>{{ exercise.reps }}</td>
                                 <td style="text-align:right">
-                                    <form method="POST" action="{{ url_for('workouts_delete_exercise', program_id=program.id, workout_id=workout.id, exercise_id=exercise.exercise_id )}}">
+                                    <form method="POST" action="{{ url_for('workouts_delete_exercise', program_id=program.id, workout_id=workout.id, exercise_id=exercise.id )}}">
                                         <button type="submit" class="btn-sm btn-danger">Poista liike treenikerrasta</button>
                                     </form>
                                 </td>
