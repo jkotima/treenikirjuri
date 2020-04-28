@@ -12,7 +12,7 @@ class AddSetToEventForm(FlaskForm):
 
 class AddCustomSetToEventForm(FlaskForm):
     exercise = SelectField('Exercise', coerce=int)
-    reps = IntegerField('Reps')
+    reps = IntegerField('Reps', [validators.required()])
     amount = FloatField("Amount", [validators.required()])
 
     class Meta:

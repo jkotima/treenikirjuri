@@ -19,6 +19,7 @@
 
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
+      {% if current_user.is_authenticated %}   
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Treenaa!</a>
         <div class="dropdown-menu" aria-labelledby="dropdown2">
@@ -26,7 +27,6 @@
           <a class="dropdown-item" href="{{ url_for('events_continue') }}">Jatka edellistä</a>
         </div>
       </li>
-      {% if current_user.is_authenticated %}   
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('events_list') }}">Treenihistoria</a>
       </li>

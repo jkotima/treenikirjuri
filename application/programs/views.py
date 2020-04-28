@@ -73,12 +73,16 @@ def programs_view(program_id):
 @login_required
 def programs_add_workout(program_id):
     form = ProgramAddWorkoutForm(request.form)
+
     p = Programs.query.get(program_id)
     
     #authorization
     if p.created_by != current_user.id:
         return redirect(url_for("programs_index"))
 
+    if not form.validate():
+        return redirect(url_for("programs_edit", program_id=program_id))
+        
     workout = Workouts(form.name.data, form.description.data, program_id)
     db.session().add(workout)
     db.session().commit()

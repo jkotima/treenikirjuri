@@ -24,6 +24,15 @@ def workouts_add_exercise(program_id, workout_id):
     #authorization
     #if Events.query.get(event_id).user_id != current_user.id:
     #    return login_manager.unauthorized()
+
+    if not form.validate():
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1")
+        print (form.exercise.errors)
+        print (form.sets.errors)
+        print (form.reps.errors)
+        return redirect(url_for("programs_edit", program_id=program_id))
+        pass
+
     wo = Workouts.query.get(workout_id)
     e = Exercises.query.get(form.exercise.data)
     wo.add_exercise(e.id, form.sets.data, form.reps.data)

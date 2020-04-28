@@ -70,7 +70,7 @@
         <li class="list-group-item">
             <br>
             <form method="POST" action="{{ url_for('programs_add_workout', program_id=program.id) }}">
-                {{ workoutform.name(placeholder="Nimi") }}
+                {{ workoutform.name(placeholder="Nimi") }}          
                 {{ workoutform.description(placeholder="Kuvaus") }}
                 <button type="submit" class="btn-sm btn-success">Lisää treenikerta</button>
             </form>

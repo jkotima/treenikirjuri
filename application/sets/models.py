@@ -24,7 +24,8 @@ class Sets(Base):
     def find_sets_by_event_id(event_id):
         stmt = text("SELECT exercises.name, sets.reps, sets.amount, exercises.unit, sets.id FROM exercises"
                     " LEFT JOIN sets ON exercise_id = exercises.id"
-                    " WHERE event_id = :id").params(id=event_id)
+                    " WHERE event_id = :id"
+                    " ORDER BY sets.id DESC").params(id=event_id)
                     
 
         results = db.engine.execute(stmt)

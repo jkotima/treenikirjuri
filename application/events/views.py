@@ -14,7 +14,7 @@ from application.events.forms import AddSetToEventForm, AddCustomSetToEventForm,
 @login_required
 def events_list():
     return render_template("events/list.html",
-         events =  Events.query.filter_by(user_id=current_user.id).order_by('date_created'))
+         events = Events.query.filter_by(user_id=current_user.id).order_by(Events.date_created.desc()))
 
 @app.route("/events/new", methods=["GET"])
 @login_required

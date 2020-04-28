@@ -9,21 +9,27 @@ class ProgramForm(FlaskForm):
         csrf = False
 
 class ProgramFilterForm(FlaskForm):
-    createdBy = StringField("Lisääjä")
+    createdBy = StringField("Lisääjä", [validators.Length(max=144)])
 
     class Meta:
         csrf = False
 
 class ProgramAddWorkoutForm(FlaskForm):
-    name = StringField("Nimi")
-    description = StringField("Kuvaus")
+    name = StringField("Nimi", [validators.Length(min=1, max=144)])
+    description = StringField("Kuvaus", [validators.Length(max=144)])
 
     class Meta:
         csrf = False
 
+# overridetaan Selectfieldin pre_validate -metodi
+# (joka palauttaa validationerrorin ilman järkiperäisiä perusteita)
+class NewSelectField(SelectField):
+    def pre_validate(self, form):
+        pass
+
 class AddExerciseToWorkoutForm(FlaskForm):
-    exercise = SelectField('Harjoitus', coerce=int)
-    sets = IntegerField('Sarjat')
-    reps = IntegerField('Toistot')
+    exercise = NewSelectField('Harjoitus', coerce=int)
+    sets = IntegerField('Sarjat', [validators.NumberRange(min=1)])
+    reps = IntegerField('Toistot', [validators.NumberRange(min=1)])
     class Meta:
         csrf = False

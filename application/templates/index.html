@@ -3,7 +3,10 @@
 {% block body %}
 {% if current_user.is_authenticated %}
   <p>
-    Tervetuloa {{ current_user.name }}! Olet nostanut rautaa yhteensä {{ amountlifted }} kiloa.
+    Tervetuloa {{ current_user.name }}! 
+    {% if amountlifted %}
+    Olet nostanut rautaa yhteensä {{ amountlifted }} kiloa.
+    {% endif %}
   </p>
 {% else %}
   <p>

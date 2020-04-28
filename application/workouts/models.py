@@ -1,6 +1,7 @@
 from application import db
 from application.models import Base
 from sqlalchemy.sql import text
+import os
 
 # liitostaulu workout_exercise
 workout_exercise = db.Table('workout_exercise',
@@ -38,11 +39,22 @@ class Workouts(Base):
     # oli pakko tehdä ra'alla sql, koska sets ja reps ei pääse muuten käsiksi
     def add_exercise(self, exercise_id, sets, reps):
         # INSERT or REPLACE INTO toimii sqlitessä, ei postgressa ):
-        stmt = text("INSERT INTO workout_exercise "
+    
+        if os.environ.get("HEROKU"):
+            stmt = text("INSERT INTO workout_exercise "
+                    "(workout_id, exercise_id, sets, reps) "
+                    "VALUES (:workout_id, :exercise_id, :sets, :reps) "
+                    "ON CONFLICT (workout_id, exercise_id) DO UPDATE SET "
+                    "SET sets = :sets AND reps = :reps"
+                    ).params(workout_id=self.id, exercise_id=exercise_id,
+                                sets=sets, reps=reps)
+        else:
+            stmt = text("INSERT or REPLACE INTO workout_exercise "
                     "(workout_id, exercise_id, sets, reps) "
                     "VALUES (:workout_id, :exercise_id, :sets, :reps)"
                     ).params(workout_id=self.id, exercise_id=exercise_id,
-                             sets=sets, reps=reps)
+                                sets=sets, reps=reps)
+
         db.engine.execute(stmt)
 
     def delete_exercise(self, exercise_id):

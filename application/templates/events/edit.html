@@ -72,7 +72,7 @@
 </div>
 {% else %}
 {% if current_user.get_active_program_name() %}
-Aktivoi treeni...
+Aktivoi treeni treeniohjelmasta:
 <div class="card">
   <form method="GET" action="{{ url_for('events_edit', event_id=event_id) }}">
     <div class="input-group" >    
@@ -82,8 +82,8 @@ Aktivoi treeni...
       </div>
     </div>
   </form>
+Lisää liike treenitapahtumaan:
 {% endif %}
-Lisää mukautettu liike...
   <form method="POST" action="{{ url_for('events_add_custom_set', event_id=event_id) }}">
     <div class="input-group" > 
       {{ form.exercise(class="form-control") }}
@@ -134,9 +134,8 @@ Lisää mukautettu liike...
 <div class="container">
   <hr>
   <form method="POST" action="{{ url_for('events_comment', event_id=event_id) }}">
-    {{ form2.comments }}
-    <br>
-    <input type="submit" value="Päivitä kommentti"/>
+    {{ form2.comments(class="form-control") }}
+    <input type="submit" value="Tallenna kommentti"/>
   </form>
 </div>
 
