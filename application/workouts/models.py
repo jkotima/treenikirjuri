@@ -44,7 +44,7 @@ class Workouts(Base):
             stmt = text("INSERT INTO workout_exercise "
                     "(workout_id, exercise_id, sets, reps) "
                     "VALUES (:workout_id, :exercise_id, :sets, :reps) "
-                    "ON CONFLICT (workout_id, exercise_id) DO UPDATE SET "
+                    "ON CONFLICT (workout_id, exercise_id) DO UPDATE "
                     "SET sets = :sets AND reps = :reps"
                     ).params(workout_id=self.id, exercise_id=exercise_id,
                                 sets=sets, reps=reps)
@@ -62,6 +62,13 @@ class Workouts(Base):
                     "WHERE workout_id = :workout_id "
                     "AND exercise_id = :exercise_id"
                     ).params(workout_id=self.id, exercise_id=exercise_id)
+        db.engine.execute(stmt)
+
+    
+    def delete_references(self):
+        stmt = text("DELETE FROM workout_exercise "
+                    "WHERE workout_id = :workout_id "
+                    ).params(workout_id=self.id)
         db.engine.execute(stmt)
 
     def get_exercises(self):
