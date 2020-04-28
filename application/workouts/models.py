@@ -45,7 +45,7 @@ class Workouts(Base):
                     "(workout_id, exercise_id, sets, reps) "
                     "VALUES (:workout_id, :exercise_id, :sets, :reps) "
                     "ON CONFLICT (workout_id, exercise_id) DO UPDATE "
-                    "SET sets = :sets AND reps = :reps"
+                    "SET sets = :sets, reps = :reps"
                     ).params(workout_id=self.id, exercise_id=exercise_id,
                                 sets=sets, reps=reps)
         else:
