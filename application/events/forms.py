@@ -5,7 +5,7 @@ from application.exercises.models import Exercises
 
 
 class AddSetToEventForm(FlaskForm):
-    amount = FloatField("Amount", [validators.required(), validators.NumberRange(min=1, max=1000000000)])
+    amount = FloatField("Amount", [validators.required(), validators.NumberRange(min=0, max=1000000000)])
 
     class Meta:
         csrf = False

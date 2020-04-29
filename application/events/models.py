@@ -18,3 +18,4 @@ class Events(Base):
 
     def get_users_name(self):
         return Users.query.get(self.user_id).name
+

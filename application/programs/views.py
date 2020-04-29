@@ -117,14 +117,11 @@ def programs_delete(program_id):
     #null Users.active_programs pointing to this program
     p.set_references_null()
     
-    #delete references in workout_exercise of all workouts of this program
-    workouts_of_this = Workouts.query.filter(Workouts.program_id == program_id)
-    for wo in workouts_of_this:
-        wo.delete_references()
+    #delete all references in workout_exercise of all workouts of this program
+    p.delete_workout_references()
 
     #delete all workouts of this program
-    workouts_of_this.\
-        delete(synchronize_session=False)
+    p.delete_workouts()
 
     db.session.delete(p)
     db.session.commit()

@@ -32,8 +32,7 @@ def exercises_delete(exercise_id):
         return redirect(url_for("exercises_index"))
 
     #delete all sets of this exercise
-    for s in Sets.query.filter_by(exercise_id = exercise_id):
-        db.session.delete(s)
+    Sets.query.filter_by(exercise_id = exercise_id).delete()
     
     db.session.delete(e)
     db.session.commit()

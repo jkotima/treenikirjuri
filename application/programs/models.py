@@ -26,6 +26,21 @@ class Programs(Base):
                     " WHERE active_program = :id").params(id=self.id)        
         db.engine.execute(stmt)
 
+    #delete all references in workout_exercise of all workouts of this program
+    def delete_workout_references(self):
+        stmt = text("DELETE FROM workout_exercise "
+                    "WHERE workout_id IN ("
+                    "   SELECT workout_id"
+                    "   FROM programs"
+                    "   WHERE id = :id)").params(id=self.id)
+        db.engine.execute(stmt)
+ 
+    #delete all workouts of this program
+    def delete_workouts(self):
+        stmt = text("DELETE FROM workouts "
+                    "WHERE program_id = :id").params(id=self.id)
+        db.engine.execute(stmt)
+    
     @staticmethod
     def find_programs_by_creators_name(created_by):
         stmt = text("SELECT programs.id, programs.name, programs.description, accounts.name, programs.created_by FROM programs"

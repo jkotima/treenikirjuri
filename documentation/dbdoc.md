@@ -1,5 +1,7 @@
+Treeniohjelma (program) koostuu treeneistä (workout), treeni koostuu liikkeistä (exercise), liike koostuu seteistä (sets).
+Käyttäjä luo treenitapahtumia (event). Treenitapahtumaan liittyy suoritetut liikkeet (sets). 
+
 ## Tietokantaskeema
-[Tietokantakaavio](../documentation/dbdiagram.png)
 ```sql
 CREATE TABLE accounts (
 	id INTEGER NOT NULL, 

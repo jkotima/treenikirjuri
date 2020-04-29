@@ -122,8 +122,7 @@ def events_delete(event_id):
         return login_manager.unauthorized()
 
     #delete all sets of this event
-    for s in Sets.query.filter_by(event_id = event_id):
-        db.session.delete(s)
+    Sets.query.filter_by(event_id = event_id).delete()
 
     db.session.delete(e)
     db.session.commit()
