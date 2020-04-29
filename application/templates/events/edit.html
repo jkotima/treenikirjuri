@@ -17,18 +17,16 @@
 
 {% if workout %}
   
-<div class="row">  
-  <div class="col">
-    <h4>{{ workout.name }}</h4>
-  </div>
-  <div class="col text-right">
-    <td style="text-align:right">
-      <form method="GET" action="{{ url_for('events_edit', event_id=event_id) }}">
-        <button type="submit" class="btn-sm btn-outline-primary">Vaihda</button>
-      </form>
-    </td>
-  </div>                
+<div class="input-group">
+  <h4>{{ workout.name }}</h4>
+  <form method="GET" action="{{ url_for('events_edit', event_id=event_id) }}">
+    <span class="input-group-btn">
+      <button type="submit" class="btn-sm btn-outline-primary ml-1" style="display: inline-block;">Vaihda</button>
+    </span>
+  </form>
 </div>
+<br>
+
 <div class="table-responsive">
   <table class="table table-striped table-sm">
     <thead>
@@ -54,7 +52,7 @@
           <div class="col">
             <form method="POST" action="{{ url_for('events_add_set', event_id=event_id, workout_id=workout_id, exercise_id=exercise.id, reps=exercise.reps) }}" >   
               <div class="input-group" >
-                {{ add_set_to_event_form.amount(placeholder="Määrä (" + exercise.unit + ")", class="form-control") }}
+                {{ add_set_to_event_form.amount(placeholder="Määrä (" + exercise.unit + ")", class="form-control", type="number", step="0.01", min="0") }}
                 <div class="input-group-append">
                   <button class="btn btn-success" type="submit">Lisää</button>
                 </div>
@@ -69,7 +67,7 @@
 </div>
 {% else %}
 {% if current_user.get_active_program_name() %}
-Aktivoi treeni treeniohjelmasta:
+Aktivoi treeni:
 <div class="card">
   <form method="GET" action="{{ url_for('events_edit', event_id=event_id) }}">
     <div class="input-group" >    
@@ -79,56 +77,55 @@ Aktivoi treeni treeniohjelmasta:
       </div>
     </div>
   </form>
-Lisää liike treenitapahtumaan:
+Lisää liike:
 {% endif %}
   <form method="POST" action="{{ url_for('events_add_custom_set', event_id=event_id) }}">
     <div class="input-group" > 
       {{ form.exercise(class="form-control") }}
-      {{ form.reps(placeholder="Toistot", class="form-control") }}
-      {{ form.amount(placeholder="Määrä", class="form-control") }}
+      {{ form.reps(placeholder="Toistot", class="form-control", type="number", step="1", min="1") }}
+      {{ form.amount(placeholder="Määrä", class="form-control", type="number", step="0.01", min="0") }}
       <div class="input-group-append">
         <button class="btn btn-success" type="submit">Lisää</button>
       </div>
     </div>  
   </form>
+</div>
   
 
 {% endif %}
 
 <hr>
 <h4>Tehdyt liikkeet</h4>
-<div class="table-responsive">
-  <table class="table table-striped table-sm">
-    <thead>
-      <tr>
-        <th>Liike</th>
-        <th>Toistot</th>
-        <th>Määrä</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for set in done_sets %} 
-      <tr>
-          <td>{{ set.exercise }}</td>
-          <td>{{ set.reps }}</td>
-          <td>{{ set.amount }}{{ set.unit }}</td>
-          <td style="text-align:right">
-            <form method="POST" action="{{ url_for('sets_delete', event_id=event_id, set_id=set.id, workout_id=workout_id) }}">
-              <button type="submit" class="btn-sm btn-danger">Poista</button>
-            </form>
-          </td>
-      </tr>
-      {% endfor %}
+<table class="table table-striped table-sm">
+  <thead>
+    <tr>
+      <th>Liike</th>
+      <th>Toistot</th>
+      <th>Määrä</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for set in done_sets %} 
+    <tr>
+        <td>{{ set.exercise }}</td>
+        <td>{{ set.reps }}</td>
+        <td>{{ set.amount }}{{ set.unit }}</td>
+        <td style="text-align:right">
+          <form method="POST" action="{{ url_for('sets_delete', event_id=event_id, set_id=set.id, workout_id=workout_id) }}">
+            <button type="submit" class="btn-sm btn-danger">Poista</button>
+          </form>
+        </td>
+    </tr>
+    {% endfor %}
 
-    </tbody>
-  </table>
-</div>
+  </tbody>
+</table>
 
 <div class="container">
   <hr>
   <form method="POST" action="{{ url_for('events_comment', event_id=event_id) }}">
-    {{ form2.comments(class="form-control") }}
+    {{ form2.comments(class="form-control", maxlength="144") }}
     <input type="submit" value="Tallenna kommentti"/>
   </form>
 </div>

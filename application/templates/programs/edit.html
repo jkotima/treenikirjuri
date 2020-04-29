@@ -41,7 +41,7 @@
                                 <td>{{ exercise.reps }}</td>
                                 <td style="text-align:right">
                                     <form method="POST" action="{{ url_for('workouts_delete_exercise', program_id=program.id, workout_id=workout.id, exercise_id=exercise.id )}}">
-                                        <button type="submit" class="btn-sm btn-danger">Poista liike treenikerrasta</button>
+                                        <button type="submit" class="btn-sm btn-danger">Poista liike</button>
                                     </form>
                                 </td>
                             </tr>
@@ -57,11 +57,11 @@
                 </li>
                 <li class="list-group-item" >
                     <form method="POST" action="{{ url_for('workouts_add_exercise', program_id=program.id, workout_id=workout.id) }}">
-                        {{ exerciseform.exercise(placeholder="Harjoitus") }}
-                        {{ exerciseform.sets(placeholder="Sarjat") }}
-                        {{ exerciseform.reps(placeholder="Toistot") }}
+                        {{ exerciseform.exercise(placeholder="Harjoitus", type="number", step="1", min="1") }}
+                        {{ exerciseform.sets(placeholder="Sarjat", type="number", step="1", min="1") }}
+                        {{ exerciseform.reps(placeholder="Toistot", type="number", step="1", min="1") }}
 
-                        <button type="submit" class="btn-sm btn-success">Lisää liike treenikertaan</button>
+                        <button type="submit" class="btn-sm btn-success">Lisää liike</button>
                     </form>
                 </li>
             </ul>

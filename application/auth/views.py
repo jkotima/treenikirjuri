@@ -12,7 +12,7 @@ def auth_login():
 
     form = LoginForm(request.form)
     
-    # validointi
+    # authorisaatio
     user = Users.query.filter_by(username=form.username.data, password=form.password.data).first()
     if not user:
         return render_template("auth/loginform.html", form = form,
@@ -28,9 +28,15 @@ def auth_register():
     form = RegisterForm(request.form)
     
     # validointi
+
+    if not form.validate():
+        return render_template("auth/registerform.html", form = form, error = "Validaatiovirhe")
+
     usr = Users.query.filter_by(username=form.username.data, password=form.password.data).first()
     if usr:
         return render_template("auth/registerform.html", form = form, error = "Account already exists")  
+    
+
 
     u = Users(form.name.data, form.username.data, form.password.data)
     

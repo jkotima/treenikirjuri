@@ -30,6 +30,9 @@ def events_create():
 def events_continue():
 
     latest_event_id = Events.query.filter_by(user_id=current_user.id).order_by(Events.id.desc()).first().id
+    
+    if not latest_event_id:
+        return redirect(url_for("events_create"))
 
     return redirect(url_for("events_edit", event_id=latest_event_id))
 
@@ -80,6 +83,10 @@ def events_add_set(event_id, workout_id, exercise_id, reps):
     if Events.query.get(event_id).user_id != current_user.id:
         return login_manager.unauthorized()
 
+    #validation
+    if not form.validate():
+        return redirect(url_for("events_edit", event_id=event_id, workout=workout_id))
+
     set = Sets(reps, amount, exercise_id, event_id)
     db.session().add(set)
     db.session().commit()
@@ -94,6 +101,10 @@ def events_add_custom_set(event_id):
     #authorization
     if Events.query.get(event_id).user_id != current_user.id:
         return login_manager.unauthorized()
+    
+    #validation
+    if not form.validate():
+        return redirect(url_for("events_edit", event_id=event_id))
 
     set = Sets(form.reps.data, form.amount.data, form.exercise.data, event_id)
     db.session().add(set)
@@ -129,6 +140,11 @@ def events_comment(event_id):
         return login_manager.unauthorized()
 
     form = CommentEventForm(request.form)
+    
+    #validation
+    if not form.validate():
+        return redirect(url_for("events_edit", event_id=event_id))
+
     e.comment = form.comments.data
     db.session.add(e)
     db.session.commit()

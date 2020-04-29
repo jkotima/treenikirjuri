@@ -11,7 +11,7 @@
          {{ form.name.label }}
         </td>
         <td>
-         {{ form.name }}
+         {{ form.name(minlength="3", maxlength="30") }}
       </td>
     </tr>
     <tr>
@@ -19,7 +19,7 @@
     	{{ form.username.label }}
       </td>
       <td>
-    	{{ form.username }}
+    	{{ form.username(minlength="3", maxlength="30") }}
       </td>
     </tr>
     <tr>
@@ -27,7 +27,7 @@
 	    {{ form.password.label }}
       </td>
       <td>
-    	{{ form.password }}
+    	{{ form.password(minlength="3", maxlength="30") }}
       </td>
     </tr>
     

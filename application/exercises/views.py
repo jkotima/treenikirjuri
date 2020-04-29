@@ -54,7 +54,7 @@ def exercises_edit(exercise_id):
 @app.route("/exercises/edit/<exercise_id>/", methods=["POST"])
 @login_required
 def exercises_update(exercise_id):
-    form = ExerciseForm(request.form)   
+    form = ExerciseEditForm(request.form)   
     e = Exercises.query.get(exercise_id)
 
     if not form.validate():
@@ -71,7 +71,7 @@ def exercises_update(exercise_id):
     if form.description.data != "":
         e.description = form.description.data
 
-    if form.unit.data != "":
+    if form.unit.data != "None":
         e.unit = form.unit.data
 
     db.session().add(e)
