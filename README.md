@@ -24,7 +24,7 @@ Treenikertojen historiatietoja voidaan tarkastella.
 - Historia
 	* Käyttäjä voi tarkastella menneitä treenitapahtumiansa
 	
-## Mahdollisesti tulossa olevia ominaisuuksia
+## Mahdollisesti tulossa
 - Käyttäjä voi tarkastella liikekohtaista edistymistään
 	* graafit yms. käppyrät
 - Treenitilassa näkyvissä edellisen kerran toistot ja painot
