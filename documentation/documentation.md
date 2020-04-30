@@ -6,8 +6,8 @@
 5. Asenna riippuvuudet komennolla: **pip install -r requirements.txt**
 6. Aja sovellus komennolla: **python3 run.py**
 
-## Käyttöönotto herokussa
-Sovellus on heroku-yhteensopiva, ja pitäisi toimia ilman sen kummempaa säätöä herokussa. PostgreSQL pitää olla asennettuna.
+## Käyttö Herokussa
+Sovellus on Heroku-yhteensopiva. PostgreSQL pitää olla asennettuna.
 
 # Sovelluksen käyttö
 
@@ -20,20 +20,27 @@ Voit lisätä liikkeitä valitsemalla "Liikkeet"->"Uusi liike". Täytä liikkeen
 Valitse valikosta "Liikkeet". Valitse listalta haluamasi liikkeen kohdalta "muokkaa".
 
 ### Treenitapahtuman tallentaminen
+
+#### Liikkeiden lisääminen ilman aktivoitua treeniohjelmaa
 Valitse alasvetovalikosta liike jonka teit treenin aikana. Täytä sarjan toistojen lkm ja siinä käytetyt painot. Lisää liike treeniin.
+
+#### Treeniohjelman treenikerran liikkeiden listaaminen treenitilassa
+Aluksi sinulla pitää olla treeniohjelma aktivoituna (treeniohjelmat=>aktivoi).
+Aktivoi treeni-vetivalikosta voit valita treenin, tämän jälkeen paina 'aktivoi'.
+Nyte liikkeet ovat näkyvillä.
 
 Voit kommentoida treenikerran tuntemuksia yms. kommenttikenttään.
 
 Lopuksi voit painaa "valmis"-painiketta.
 
-*HUOM! Aktivoitu treeniohjelma on tulossa tähän näkymään, toiminnallisuus ei ole vielä valmis.*
-
 ### Treenihistorian tarkastelu
-Valitse valikosta "treenihistoria".
+Valitse valikosta "treenihistoria". Voit muokata ja tarkastella treenikertaa Muokkaa-painikkeesta
 
 ### Treeniohjelmien luominen
-Valitse valikosta "treeniohjelmat". Valitse "Uusi treeniohjelma". Anna
-treeniohjelmallesi nimi ja kuvaus. Paina valmis, jonka jälkeen pääset treeniohjelman muokkausnäkymään.
+Valitse valikosta "treeniohjelmat". Valitse "Uusi ohjelma". Anna treeniohjelmallesi nimi ja kuvaus. Paina valmis, jonka jälkeen pääset treeniohjelman muokkausnäkymään.
+
+### Treeniohjelman muokkaaminen
+Treeniohjelmien listausnäkymässä, valitse 'Muokkaa' (haluamasi treeniohjelman kohdalta)
 
 #### Treenikertojen lisääminen treeniohjelmaan
 Treeniohjelman muokkausnäkymässä, anna treenikerrallesi nimi (esimerkiksi 'Keskiviikko') ja kuvaus (esimerkiksi 'jalkapäivä'). Paina "Lisää treenikerta".
@@ -45,17 +52,11 @@ Treeniohjelman muokkausnäkymässä, valitse alasvetovalikosta haluamasi liike, 
 Treeniohjelman muokkausnäkymässä, valitse poista treenikerta/poista liike treenikerrasta. 
 
 ### Treeniohjelman aktivoiminen
-Treeniohjelmien listausnäkymässä, valitse haluamasi treeniohjelman kohdalta "aktivoi". Nyt treeniohjelma näkyy treeninäkymässä *(HUOM! tulossa oleva ominaisuus)*
-
-Voit etsiä treeniohjelmia lisääjän perusteella.
+Treeniohjelmien listausnäkymässä, valitse haluamasi treeniohjelman kohdalta "aktivoi". Nyt treeniohjelma näkyy treeninäkymässä. 
+Voit myös etsiä treeniohjelmia lisääjän perusteella.
 
 ### Treeniohjelman tarkastelu
 Treeniohjelmien listausnäkymässä, klikkaa haluamasi treeniohjelman nimeä.
 
 ### Treeniohjelman muokkaaminen/poistaminen
 Treeniohjelmien listausnäkymässä, klikkaa haluamasi treeniohjelman kohdalta muokkaa/poista.
-
-## Muuta materiaalia
-[Tietokantakaavio](../documentation/dbdiagram.png)
-[Tietokantadokumentaatio](../documentation/dbdoc.md)
-[Käyttötapaukset ja niihin liittyvät tietokantakyselyt](../documentation/usecases.md)
