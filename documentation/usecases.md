@@ -1,4 +1,4 @@
-# Käyttötapaukset ja niihin liittvät SQL-kyselyt
+# Käyttötapaukset ja niihin liittyvät SQL-kyselyt
 
 ## Rekisteröinti (käyttäjän lisääminen)
 1. Käyttäjä valitsee 'rekisteröi'
@@ -179,7 +179,7 @@ DELETE FROM workouts WHERE workouts.id = ?;
 ## Liikkeen lisääminen treenikertaan
 
 1. Treeniohjelman muokkaustilassa, käyttäjä valitsee alasvetovalikosta liikkeen ja täyttää kenttiin sarjojen ja toistojen lukumäärät. 
-2. Käyttäjä valitsee 'lisää liike treeniikertaan'
+2. Käyttäjä valitsee 'Lisää liike treeniikertaan'
 
 ```sql
 --sqlite3:
@@ -201,7 +201,7 @@ UPDATE accounts SET date_modified=CURRENT_TIMESTAMP, active_program=? WHERE acco
 ```
 ## Kuntosaliohjelman deaktivointi
 1. Käyttäjä valitsee valikosta 'Treeniohjelmat'
-2. Käyttäjä valitsee oikeasta yläkulmasta, aktiivisen treeniohjelman nimen kohdalta 'deaktivoi'
+2. Käyttäjä valitsee oikeasta yläkulmasta, aktiivisen treeniohjelman nimen kohdalta 'Deaktivoi'
 
 ```sql
 UPDATE accounts SET date_modified=CURRENT_TIMESTAMP, active_program = NULL WHERE accounts.id = current_user.id;
