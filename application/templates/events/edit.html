@@ -46,6 +46,7 @@
                         .filter_by(exercise_id = exercise.id)
                         .count() 
           }}/{{ exercise.sets }}</td>
+          
       <td>{{ exercise.reps }}</td>
       <td>
         <div class="col">
@@ -76,18 +77,18 @@ Aktivoi treeni:
   </div>
 </form>
 Lisää liike:
+</div>
 {% endif %}
 <form method="POST" action="{{ url_for('events_add_custom_set', event_id=event_id) }}">
   <div class="input-group" > 
-    {{ form.exercise(class="form-control") }}
-    {{ form.reps(placeholder="Toistot", class="form-control", type="number", step="1", min="1") }}
-    {{ form.amount(placeholder="Määrä", class="form-control", type="number", step="0.01", min="0") }}
+    {{ addsetform.exercise(class="form-control") }}
+    {{ addsetform.reps(placeholder="Toistot", class="form-control", type="number", step="1", min="1") }}
+    {{ addsetform.amount(placeholder="Määrä", class="form-control", type="number", step="0.01", min="0") }}
     <div class="input-group-append">
       <button class="btn btn-success" type="submit">Lisää</button>
     </div>
   </div>  
 </form>
-</div>
   
 
 {% endif %}
@@ -123,7 +124,7 @@ Lisää liike:
 <div class="container">
   <hr>
   <form method="POST" action="{{ url_for('events_comment', event_id=event_id) }}">
-    {{ form2.comments(class="form-control", maxlength="144") }}
+    {{ commentform.comments(class="form-control", maxlength="144") }}
     <input type="submit" value="Tallenna kommentti"/>
   </form>
 </div>

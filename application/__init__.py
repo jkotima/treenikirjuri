@@ -23,7 +23,7 @@ from application.sets import models
 from application.workouts import models
 from application.events import models
 
-#luodaan taulut tietokantaan tarvittaessa
+# luodaan taulut tietokantaan tarvittaessa
 try: 
     db.create_all()
 except:

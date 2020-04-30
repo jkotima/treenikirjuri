@@ -20,13 +20,12 @@
       </td>
     </tr>
     <tr>
-      <tr>
-        <td>
-          {{ form.description.label }}
-        </td>
-        <td>
-          {{ form.description }}
-        </td>
+      <td>
+        {{ form.description.label }}
+      </td>
+      <td>
+        {{ form.description }}
+      </td>
     </tr>
     
   </table>
@@ -34,19 +33,15 @@
   {{ form.unit.label }}
   <table>
     <tr>
-      <tr>
-        <td>
-          
-        </td>
-        <td>
-          {% for subfield in form.unit %}
-          <tr>
-              <td>{{ subfield }}</td>
-              <td>{{ subfield.label }}</td>
-          </tr>
-          {% endfor %}
-        </td>
-        
+      <td></td>
+      <td>
+        {% for subfield in form.unit %}
+        <tr>
+            <td>{{ subfield }}</td>
+            <td>{{ subfield.label }}</td>
+        </tr>
+        {% endfor %}
+      </td>
     </tr>
   </table>
 <td colspan="2">

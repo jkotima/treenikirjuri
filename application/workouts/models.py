@@ -36,24 +36,23 @@ class Workouts(Base):
         self.description = description
         self.program_id = program_id
 
-    # oli pakko tehdä ra'alla sql, koska sets ja reps ei pääse muuten käsiksi
     def add_exercise(self, exercise_id, sets, reps):
-        # INSERT or REPLACE INTO toimii sqlitessä, ei postgressa ):
-    
+        # INSERT or REPLACE INTO toimii sqlitessä
+        # ON CONFLICT postgresissa
         if os.environ.get("HEROKU"):
             stmt = text("INSERT INTO workout_exercise "
-                    "(workout_id, exercise_id, sets, reps) "
-                    "VALUES (:workout_id, :exercise_id, :sets, :reps) "
-                    "ON CONFLICT (workout_id, exercise_id) DO UPDATE "
-                    "SET sets = :sets, reps = :reps"
-                    ).params(workout_id=self.id, exercise_id=exercise_id,
-                                sets=sets, reps=reps)
+                        "(workout_id, exercise_id, sets, reps) "
+                        "VALUES (:workout_id, :exercise_id, :sets, :reps) "
+                        "ON CONFLICT (workout_id, exercise_id) DO UPDATE "
+                        "SET sets = :sets, reps = :reps"
+                        ).params(workout_id=self.id, exercise_id=exercise_id,
+                                 sets=sets, reps=reps)
         else:
             stmt = text("INSERT or REPLACE INTO workout_exercise "
-                    "(workout_id, exercise_id, sets, reps) "
-                    "VALUES (:workout_id, :exercise_id, :sets, :reps)"
-                    ).params(workout_id=self.id, exercise_id=exercise_id,
-                                sets=sets, reps=reps)
+                        "(workout_id, exercise_id, sets, reps) "
+                        "VALUES (:workout_id, :exercise_id, :sets, :reps)"
+                        ).params(workout_id=self.id, exercise_id=exercise_id,
+                                 sets=sets, reps=reps)
 
         db.engine.execute(stmt)
 
@@ -64,7 +63,6 @@ class Workouts(Base):
                     ).params(workout_id=self.id, exercise_id=exercise_id)
         db.engine.execute(stmt)
 
-    
     def delete_references(self):
         stmt = text("DELETE FROM workout_exercise "
                     "WHERE workout_id = :workout_id "
@@ -73,7 +71,8 @@ class Workouts(Base):
 
     def get_exercises(self):
         stmt = text("SELECT workout_id, exercise_id, "
-                    "name, sets, reps, description, unit FROM workout_exercise "
+                    "name, sets, reps, description, unit "
+                    "FROM workout_exercise "
                     "LEFT JOIN exercises ON exercise_id = exercises.id "
                     "WHERE workout_id = :workout_id"
                     ).params(workout_id=self.id)
