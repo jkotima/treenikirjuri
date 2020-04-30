@@ -1,8 +1,5 @@
 # treenikirjuri
-Sovelluksessa voi luoda treeniohjelman kuntosalille. Treeniohjelma (program) koostuu treeneistä, treeni (workout) koostuu liikkeistä, liike (exercise) koostuu seteistä (sets).
-
-Käyttäjä kirjautuu sovellukseen. 
-
+Sovelluksessa voi luoda treeniohjelman kuntosalille sekä pitää kirjaa treenien aikana tehdyistä liikuntasuoritteista.
 
 Treenin aikana käyttäjällä on käytössään treenitila, jossa merkataan jokaisen treenitapahtuman aikana tehdyt liikkeet ja niihin liittyvät toistot ja painot.
 
@@ -21,11 +18,27 @@ Treenikertojen historiatietoja voidaan tarkastella.
 	* Valitaan käyttäjän omista tai muiden käyttäjien tekemistä ohjelmista
 
 - Treenitila
-	* Treenikerran valinta kuntosaliohjelmasta (näkymässä näkyvät liikkeet määräytyvät tämän mukaisesti)
+	* Aktvoidun treeniohjelman näkyminen
 	* Liikkeissä käytettyjen painojen ja toistojen kirjaaminen
 
 - Historia
 	* Käyttäjä voi tarkastella menneitä treenitapahtumiansa
+	
+## Mahdollisesti tulossa olevia ominaisuuksia
+- Käyttäjä voi tarkastella liikekohtaista edistymistään
+	* graafit yms. käppyrät
+- Treenitilassa näkyvissä edellisen kerran toistot ja painot
+- Treenitietojen exporttaaminen
+- Käyttäjän painon kirjaus
+- Toistojen/sarjojen dynaaminen lukumäärä treeniohjelmassa
+
+## Testitunnukset herokuun:
+* käyttäjätunnus:hello
+* salasana:world
+
+[Sovellus Herokussa](https://treenikirjuri.herokuapp.com/)
+
+## Materiaalit
 
 [Asennus- ja käyttöohje](../master/documentation/documentation.md)
 
@@ -36,18 +49,4 @@ Treenikertojen historiatietoja voidaan tarkastella.
 [Tietokantakaavio (dbdiagram.io)](../master/documentation/dbdiagram.png)
 
 [Tietokantakaavio (yuml.me)](../master/documentation/dbdiagram2.png)
-
-## Mahdollisesti tulossa olevia ominaisuuksia
-- Käyttäjä voi tarkastella liikekohtaista edistymistään
-- Liikkeiden kohdalla näkyy edellisen kerran toistot ja painot
-- Treenitietojen exporttaaminen
-
-## Testitunnukset herokuun:
-* käyttäjätunnus:hello
-* salasana:world
-
-[Sovellus Herokussa](https://treenikirjuri.herokuapp.com/)
-
-
-
 
