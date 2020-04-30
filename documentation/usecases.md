@@ -150,12 +150,12 @@ DELETE FROM workout_exercise
 WHERE workout_id IN (
                      SELECT workout_id
                      FROM programs
-                     WHERE id = :id
+                     WHERE id = ?
                      );
 
 -- 3. Poistetaan kaikki tämän ohjelman treenikerrat
 DELETE FROM workouts
-WHERE program_id = :id;
+WHERE program_id = ?;
 
 --4. Poistetaan itse ohjelma
 DELETE FROM programs WHERE programs.id = ?;
@@ -214,7 +214,7 @@ UPDATE accounts SET date_modified=CURRENT_TIMESTAMP, active_program = NULL WHERE
 SELECT SUM(sets.reps*sets.amount) AS weight FROM sets
 LEFT JOIN exercises ON sets.exercise_id = exercises.id"
 LEFT JOIN events ON sets.event_id = events.id"
-WHERE exercises.unit = 'kg' AND events.user_id = :id";
+WHERE exercises.unit = 'kg' AND events.user_id = ?";
 ```
 
 
