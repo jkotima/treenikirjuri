@@ -16,7 +16,7 @@ SELECT *
 FROM accounts 
 WHERE accounts.username = ? AND accounts.password = ?;
 
--- ...jos tulee rivejä, kirjataan käyttäjä sisään
+-- ...jos rivejä esiintyy, kirjataan käyttäjä sisään
 ```
 ## Liikkeiden lisääminen
 1. Käyttäjä valitsee valikosta 'lisää liike'
@@ -27,7 +27,7 @@ WHERE accounts.username = ? AND accounts.password = ?;
 INSERT INTO exercises (date_created, date_modified, name, description, unit, created_by)
 VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, current_user.id);
 ```
-## Liikkeiden (1.) listaaminen ja (2.) suodattamin lisääjän nimen perusteella
+## Liikkeiden listaaminen ja suodattaminen lisääjän nimen perusteella
 1. Käyttäjä valitsee päävalikosta 'Liikkeet'
 2. Käyttäjä voi hakea liikettä lisääjän perusteella sivun ylälaidassa olevalla lomakkeella
 
@@ -39,7 +39,7 @@ VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, current_user.id);
 SELECT exercises.id, exercises.name, exercises.description, accounts.name, exercises.created_by 
 FROM exercises 
 LEFT JOIN accounts ON created_by = accounts.id 
-WHERE LOWER(accounts.name) LIKE ?
+WHERE LOWER(accounts.name) LIKE ?%;
 ```
 ## Liikkeiden muokkaaminen
 1. Käyttäjä valitsee päävalikosta 'Liikkeet'
@@ -51,7 +51,7 @@ WHERE LOWER(accounts.name) LIKE ?
 
 UPDATE exercises 
 SET date_modified=CURRENT_TIMESTAMP, name=?, description=?, unit=? 
-WHERE exercises.id = ?
+WHERE exercises.id = ?;
 ```
 ## Liikkeiden poistaminen
 1. Käyttäjä valitsee päävalikosta 'Liikkeet'
@@ -59,16 +59,16 @@ WHERE exercises.id = ?
 
 ```sql
 -- aluksi pitää poistaa kaikki setit (suoritetut liikkeet), jotka ovat tätä liikettä
-DELETE FROM sets WHERE sets.exercise.id = ?
+DELETE FROM sets WHERE sets.exercise.id = ?;
 
 -- sitten poistetaan itse liike
-DELETE FROM exercises WHERE exercises.id = ?
+DELETE FROM exercises WHERE exercises.id = ?;
 ```
 ## Uuden treenin luominen
 1. Käyttäjä valitsee päävalikosta 'Treenaa'=>'Uusi treenitapahtuma'
 ```sql
 INSERT INTO events (date_created, date_modified, user_id) 
-VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, current_user.id)
+VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, current_user.id);
 ```
 ## Edelliseen treeniin palaaminen
 1. Käyttäjä valitsee päävalikosta 'Treenaa'=>'Jatka edellistä'
@@ -77,7 +77,7 @@ VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, current_user.id)
 SELECT events.id
 FROM events 
 WHERE events.user_id = 1 ORDER BY events.id DESC
-LIMIT 1
+LIMIT 1;
 ```
 ## Liikekohtaisten tietojen tallentaminen treenin aikana
 1. Käyttäjä valitsee päävalikosta 'Treenaa'=>'Uusi treeni' tai 'Treenaa'=>'Jatka edellistä'
@@ -85,7 +85,7 @@ LIMIT 1
 
 ```sql
 INSERT INTO sets (date_created, date_modified, reps, amount, exercise_id, event_id) 
-VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?)
+VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?);
 ```
 ## Tietyn treenikerran liikkeiden näyttäminen treenitilassa
 1. Käyttäjä valitsee Aktivoi treeni-pudotusvalikosta treenin
@@ -95,18 +95,18 @@ VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?)
 SELECT workout_id, exercise_id, name, sets, reps, description, unit 
 FROM workout_exercise 
 LEFT JOIN exercises ON exercise_id = exercises.id 
-WHERE workout_id = ?
+WHERE workout_id = ?;
 
 --suoritettujen sarjojen lkm laskeminen
 SELECT count(*)
 FROM sets
-WHERE sets.event_id = ? AND sets.exercise_id = ?)
+WHERE sets.event_id = ? AND sets.exercise_id = ?);
 ```
 ## Treenin kommentointi
 1. Käyttäjä kirjoittaa kommenttikenttään treenitilassa
 2. Käyttäjä painaa 'tallenna kommentti'
 ```sql
-UPDATE events SET date_modified=CURRENT_TIMESTAMP, comment=? WHERE events.id = ?
+UPDATE events SET date_modified=CURRENT_TIMESTAMP, comment=? WHERE events.id = ?;
 ```
 ## Treenitapahtuman poistaminen
 1. Käyttäjä valitsee haluamansa treenin treenitilassa 'poista treenitapahtuma ja sen tiedot'
@@ -115,7 +115,7 @@ UPDATE events SET date_modified=CURRENT_TIMESTAMP, comment=? WHERE events.id = ?
 -- aluksi pitää poistaa kaikki setit (suoritetut liikkeet), jotka ovat osa tätä treenitapahtumaa
 DELETE FROM sets WHERE sets.event_id = ?
 -- poistetaan itse treenitapahtuma
-DELETE FROM events WHERE events.id = ?
+DELETE FROM events WHERE events.id = ?;
 ```
 ## Treenitapahtumien listaaminen (treenihistoria)
 1. Käyttäjä valitsee päävalikosta 'treenihistoria'
@@ -123,17 +123,17 @@ DELETE FROM events WHERE events.id = ?
 SELECT *
 FROM events 
 WHERE events.user_id = ?
-ORDER BY events.date_created DESC
+ORDER BY events.date_created DESC;
 ```
 
 ## Kuntosaliohjelman luominen
 1. Käyttäjä valitsee päävalikosta 'Treeniohjelmat'
 2. Käyttäjä valitsee 'Uusi ohjelma'
-3. Käyttäjä antaa ohjelmalle nimen ja kuvauksen ja valitsee valmis
+3. Käyttäjä antaa ohjelmalle nimen ja kuvauksen ja valitsee 'valmis'
 
 ```sql
 INSERT INTO programs (date_created, date_modified, name, description, created_by) 
-VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, current_user.id)
+VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, current_user.id);
 ```
 
 ## Kuntosaliohjelman poistaminen
@@ -143,22 +143,22 @@ VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, current_user.id)
 ```sql
 -- 1. Nollataan kaikkien käyttäjien active_program, jossa tämä on
 UPDATE accounts SET active_program = NULL
-WHERE active_program = ?
+WHERE active_program = ?;
 
 -- 2. Poistetaan kaikki tämän ohjelman treenikertojen ilmeentymät workout_exercisesta
 DELETE FROM workout_exercise 
 WHERE workout_id IN (
                      SELECT workout_id
-                     FROM programs"
+                     FROM programs
                      WHERE id = :id
-                     )
+                     );
 
 -- 3. Poistetaan kaikki tämän ohjelman treenikerrat
 DELETE FROM workouts
-WHERE program_id = :id
+WHERE program_id = :id;
 
 --4. Poistetaan itse ohjelma
-DELETE FROM programs WHERE programs.id = ?
+DELETE FROM programs WHERE programs.id = ?;
 
 ```
 ## Treenikerran lisääminen kuntosaliohjelmaan
@@ -167,12 +167,12 @@ DELETE FROM programs WHERE programs.id = ?
 
 ```sql
 INSERT INTO workouts (date_created, date_modified, name, description, program_id) 
-VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, muokattava_treeniohjelma.id)
+VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, muokattava_treeniohjelma.id);
 ```
 ## Treenikerran poistaminen
 1. Treeniohjelman muokkaustilassa, käyttäjä valitsee haluamansa treenitilan kohdalta 'Poista'
 ```sql
-DELETE FROM workouts WHERE workouts.id = ?
+DELETE FROM workouts WHERE workouts.id = ?;
 
 ```
 
@@ -190,31 +190,31 @@ VALUES (muokattava_treenikerta.id, lisättävä_liike.id, ?, ?)
 INSERT INTO workout_exercise (workout_id, exercise_id, sets, reps
 VALUES (muokattava_treenikerta.id, lisättävä_liike.id, ?, ?)
 ON CONFLICT (workout_id, exercise_id) DO UPDATE
-SET sets = ?, reps = ?
+SET sets = ?, reps = ?;
 ```
 ## Kuntosaliohjelman aktivointi
 1. Käyttäjä valitsee valikosta 'Treeniohjelmat'
 2. Käyttäjä valitsee haluamansa ohjelman kohdalta 'Aktivoi'
 
 ```sql
-UPDATE accounts SET date_modified=CURRENT_TIMESTAMP, active_program=? WHERE accounts.id = current_user.id
+UPDATE accounts SET date_modified=CURRENT_TIMESTAMP, active_program=? WHERE accounts.id = current_user.id;
 ```
 ## Kuntosaliohjelman deaktivointi
 1. Käyttäjä valitsee valikosta 'Treeniohjelmat'
 2. Käyttäjä valitsee oikeasta yläkulmasta, aktiivisen treeniohjelman nimen kohdalta 'deaktivoi'
 
 ```sql
-UPDATE accounts SET date_modified=CURRENT_TIMESTAMP, active_program=None WHERE accounts.id = current_user.id
+UPDATE accounts SET date_modified=CURRENT_TIMESTAMP, active_program = NULL WHERE accounts.id = current_user.id;
 ```
-## Totaalisen liftausmäärän (selkävikaluku) tarkastelu
-1. Käyttäjä katsoo etusivulle (jonne pääsee mm. painamalla 'Treenikirjuri')
+## Yhteenlasketun painomäärän (selkävikaluku) tarkastelu
+1. Käyttäjä katsoo etusivulle
 2. Käyttäjä lopettaa kuntosalijäsenyytensä
 
 ```sql
 SELECT SUM(sets.reps*sets.amount) AS weight FROM sets
 LEFT JOIN exercises ON sets.exercise_id = exercises.id"
 LEFT JOIN events ON sets.event_id = events.id"
-WHERE exercises.unit = 'kg' AND events.user_id = :id"
+WHERE exercises.unit = 'kg' AND events.user_id = :id";
 ```
 
 
